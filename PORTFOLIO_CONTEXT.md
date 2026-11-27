@@ -34,3 +34,9 @@ Satyam owned the first product interface for an agentic developer tool that bega
 ## Working agreement
 
 Record changes and outstanding decisions in this file. Keep the homepage, project detail pages and interactive illustration independently editable. Verify screenshot crops before adding them, particularly personal or account data. Use local assets for the site. Satyam can supply a curated image section later. Keep prototype metrics and unconfirmed outcomes out of published copy.
+
+## Homepage draft
+
+Open index.html directly or serve the repository root with `python3 -m http.server 4186 --bind 127.0.0.1`. The homepage uses plain HTML and CSS. The desktop reading column owns scrolling. At 700 px and below, the illustration sits above the page content.
+
+The first pass uses the reference still and six archived Figma screens across five project summaries. The summaries expand inline. The final character interaction, secondary pages, testimonial attribution, and additional content for Slides and Buildojo are pending. Before a public launch, review the screenshot selections and confirm any added dates or outcomes.

@@ -16,19 +16,24 @@
       <nav aria-label="Portfolio navigation">
         <a href="#home">Home</a>
         <a href="#work">Work</a>
-        <a href="#about">About me</a>
-        <a href="#contact">Contact</a>
+        <a href="#about">More about me</a>
+        <span aria-disabled="true">Playground</span>
+        <a href="#contact">Contacts</a>
       </nav>
       <div class="column">
         <section id="home">
           <h1>Satyam.</h1>
-          <p>I’m a <strong>product designer</strong> with a computer science background. I like figuring out <strong>why something feels harder to use than it should</strong>, then getting into the details of how to make it easier.</p>
-          <p>I’m currently experimenting with typography and grids. Away from the screen, I might be journaling or collecting references for a room I haven’t built yet.</p>
+          <div class="intro">
+            <p>I’m a <strong>product designer</strong> with a computer science background. I like figuring out <strong>why something feels harder to use than it should</strong>, then getting into the details of how to make it easier.</p>
+            <p>I’m currently experimenting with typography and grids. Away from the screen, I might be <strong>journaling my life &amp; thoughts</strong> and <strong>collecting references for a room</strong> I haven’t built yet.</p>
+          </div>
           <dl>
-            <dt>Email</dt>
-            <dd><a href="mailto:satyam@vizually.design">satyam@vizually.design</a></dd>
             <dt>Twitter</dt>
             <dd><a href="https://x.com/satyamvizually">@satyamvizually</a></dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:satyam@vizually.design">satyam@vizually.design</a></dd>
+            <dt>LinkedIn</dt>
+            <dd>Satyam Gopal</dd>
           </dl>
         </section>
         <section id="work">
@@ -36,15 +41,15 @@
           <article>
             <header>
               <h3>Jumbo</h3>
-              <span>Game design & design leadership</span>
+              <span>Game design &amp; design leadership</span>
             </header>
-            <p>Games and a wallet for players across India.</p>
-            <figure class="jumbo">
-              <img src="assets/work/jumbo.png" alt="Jumbo product interface" loading="lazy">
-              <img src="assets/work/wallet.png" alt="Jumbo wallet withdrawal choices" loading="lazy">
+            <figure class="image-pair jumbo">
+              <div class="image-slot"><img src="assets/work/jumbo.png" alt="Jumbo product interface" loading="lazy"></div>
+              <div class="image-slot"><img src="assets/work/wallet.png" alt="Jumbo wallet withdrawal choices" loading="lazy"></div>
             </figure>
             <details>
               <summary>Project notes</summary>
+              <p>Games and a wallet for players across India.</p>
               <p>I designed Aviator from scratch and owned flows for Ludo, cricket and Plinko. Players often missed games in the Games tab, so I explored homepage layouts that put four or five priority games within reach. For Aviator, I focused on large controls and fewer taps during fast rounds.</p>
               <p>I managed two designers on the wallet. Together we worked through how to explain cash, tokens and shopping credits, and how to show what happens while a withdrawal is under review.</p>
             </details>
@@ -54,16 +59,88 @@
               <h3>Zorro</h3>
               <span>Product redesign</span>
             </header>
-            <p>A clearer view of what an AI test is doing.</p>
-            <figure class="zorro">
-              <img src="assets/work/zorro.png" alt="Zorro product interface" loading="lazy">
+            <figure class="image-pair zorro">
+              <div class="image-slot"><img src="assets/work/zorro.png" alt="Zorro product interface" loading="lazy"></div>
+              <div class="image-slot" aria-hidden="true"></div>
             </figure>
             <details>
               <summary>Project notes</summary>
+              <p>A clearer view of what an AI test is doing.</p>
               <p>I mapped the fields across tests, bugs and reports, then sketched which information belonged in a table and which needed a detail view. With an investor meeting approaching, I used Claude to explore high-fidelity versions of the selected layouts.</p>
               <p>One revised screen handles a run blocked at sign-in. It says why the agent paused and gives the tester a choice to continue with credentials, skip the step or stop the run.</p>
             </details>
           </article>
+          <article>
+            <h3>Slides</h3>
+            <figure class="image-pair future">
+              <div class="image-slot" aria-hidden="true"></div>
+              <div class="image-slot" aria-hidden="true"></div>
+            </figure>
+          </article>
+          <article>
+            <h3>Buildojo</h3>
+            <figure class="image-pair future">
+              <div class="image-slot" aria-hidden="true"></div>
+              <div class="image-slot" aria-hidden="true"></div>
+            </figure>
+          </article>
+        </section>
+        <section id="about">
+          <h2>My design workflow as a solo designer</h2>
+          <div class="workflow">
+            <h3>Fresh problem</h3>
+            <div class="workflow-panel">
+              <div class="workflow-images" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <p>Spend time with the brief → Gather context → Frame the problem → Sketch solutions on paper → Review competitors in FigJam → Explore alternatives → Build and test → Apply the design system.</p>
+            </div>
+          </div>
+          <div class="workflow">
+            <h3>Rapid prototyping</h3>
+            <div class="workflow-panel">
+              <div class="workflow-images" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <p>Understand the problem → Sketch a solution → Build a rough prototype with Claude → Try it and iterate → Choose a direction → Apply the design system or brand kit.</p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h2>Other than design</h2>
+          <div class="card-row hobbies" tabindex="0" aria-label="Interests">
+            <figure><figcaption>Calisthenics</figcaption><div class="image-slot" aria-hidden="true"></div></figure>
+            <figure><figcaption>Journaling</figcaption><div class="image-slot" aria-hidden="true"></div></figure>
+            <figure><figcaption>Badminton &amp; running</figcaption><div class="image-slot" aria-hidden="true"></div></figure>
+          </div>
+        </section>
+        <section>
+          <h2>Some nice words</h2>
+          <div class="testimonials">
+            <p>Founder of Zorro (YC)</p>
+            <div class="card-row quotes" tabindex="0" aria-label="Testimonials">
+              <blockquote>Experience was good. Easy to collaborate with and quick communication. Good variety of explorations as well.</blockquote>
+              <div class="empty-quote" aria-hidden="true"></div>
+            </div>
+          </div>
+        </section>
+        <section class="teaching">
+          <h2>I love sharing whatever I’ve learnt</h2>
+          <figure>
+            <figcaption>Design system workshop at GrowthJockey, 2024</figcaption>
+            <div class="image-slot" aria-hidden="true"></div>
+          </figure>
+          <figure>
+            <figcaption>Design sessions at Crater Club, 2023</figcaption>
+            <div class="image-slot" aria-hidden="true"></div>
+          </figure>
+          <figure>
+            <figcaption>Started a design club at NIT Jalandhar</figcaption>
+            <div class="teaching-grid" aria-hidden="true">
+              <div class="image-slot"></div>
+              <div class="image-slot"></div>
+              <div class="image-slot"></div>
+            </div>
+          </figure>
+        </section>
+        <section class="more-work">
+          <h2>More work</h2>
           <article>
             <header>
               <h3>Greptile</h3>
@@ -106,32 +183,6 @@
               <p>Workers began as a playground. I mapped its workflow in FigJam, studied tools like Manus and proposed an information architecture to the founder. Once we agreed on the direction, I designed the MVP around launching a worker from an issue, following its progress and inspecting the spec or code diff.</p>
             </details>
           </article>
-        </section>
-        <section id="about">
-          <h2>My design workflow</h2>
-          <h3>A fresh problem</h3>
-          <p>I start with the brief and sketch what someone came to do. Once the flow makes sense on paper, I explore layouts in Figma and work through the details with the team.</p>
-          <h3>Rapid prototyping</h3>
-          <p>I use a rough sketch to guide a prototype, try the interaction, and revise it before applying the design system.</p>
-        </section>
-        <section>
-          <h2>Other than design</h2>
-          <dl>
-            <dt>Calisthenics</dt>
-            <dd>Pull-ups and timed challenges.</dd>
-            <dt>Journaling</dt>
-            <dd>Small things I’d otherwise forget.</dd>
-            <dt>Badminton</dt>
-            <dd>A college favourite I’d like to return to.</dd>
-          </dl>
-        </section>
-        <section>
-          <h2>Sharing what I’ve learnt</h2>
-          <ul>
-            <li>Design systems workshop at GrowthJockey <small>2024</small></li>
-            <li>Design sessions at Crater Club <small>2023</small></li>
-            <li>Started a design community at NIT Jalandhar</li>
-          </ul>
         </section>
         <footer id="contact">
           <h2>Get in touch</h2>

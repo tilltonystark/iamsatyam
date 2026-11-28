@@ -1,12 +1,18 @@
-// The homepage illustration reacts to the visitor: says howdy on arrival, changes pose and speech
-// as each section comes into view, leans toward a hovered project, and says hi when pressed.
-// Poses and lines live in content/character.json. A pose can be one picture or a short loop of frames.
-// Any missing file is skipped; a pose with no files falls back to the standing illustration.
+// The homepage illustration reacts to the visitor.
+// - Arrives with a wave and "Howdy!".
+// - Looks at the visitor; while the page scrolls, his eyes turn toward the page, then come back.
+// - As each section settles in view, he changes pose and says its line (once per section).
+// - Pointing at the projects makes him lean in once and straighten up. Moving from card to card
+//   doesn't repeat it, so there's no back-and-forth.
+// - Scrolling very fast gets one "in a hurry?" line instead of a stream of reactions.
+// - Pressing him says hi.
+// Poses and lines live in content/character.json. A pose can be one picture or a short loop of frames;
+// missing files are skipped, and a pose with no files falls back to the standing illustration.
 export async function mountCharacter({ button, sections, hoverArea, config }) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const layers = [...button.querySelectorAll('.layer')];
   const bubble = button.querySelector('.bubble');
-  const { poses = {}, moments = {} } = config;
+  const { poses = {}, moments = {}, lines = {} } = config;
 
   const exists = src => new Promise(resolve => {
     const img = new Image();
@@ -22,13 +28,15 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     const frames = (await Promise.all((d.frames || []).map(exists))).filter(Boolean);
     if (frames.length) ready[name] = { frames, fps: d.fps || 3, breathe: !!d.breathe };
   }));
-  const still = ready.still || { frames: [layers[0].src], fps: 1, breathe: false };
+  const still = ready.still || { frames: [layers[0].getAttribute('src')], fps: 1, breathe: false };
+  const stillSrc = still.frames[0];
 
   let front = 0, shownSrc = layers[0].getAttribute('src'), current = null, frameTimer = 0, frameIndex = 0;
-  let section = null, hovering = false, hideTimer = 0;
+  let section = null, spokenFor = null, hideTimer = 0;
 
-  // Cross-fade to a picture. Pose changes get a soft blur; frames within a pose swap quickly.
+  // ---------- Drawing ----------
   function show(src, soft) {
+    button.classList.toggle('still-on', src === stillSrc);
     if (src === shownSrc) return;
     shownSrc = src;
     const next = layers[1 - front], prev = layers[front];
@@ -40,7 +48,6 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
 
   function setPose(name) {
     const pose = ready[name] || still;
-    button.classList.toggle('lean', name === 'glance' && !ready.glance);
     if (name === 'wave' && !ready.wave) wiggle();
     if (pose === current) return;
     current = pose;
@@ -56,22 +63,25 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     }
   }
 
-  function say(text) {
+  function say(text, ms = 3000) {
     clearTimeout(hideTimer);
     if (!text) { bubble.classList.remove('show'); return; }
     bubble.textContent = text;
     bubble.classList.remove('show');
     void bubble.offsetWidth; // restart the pop-in
     bubble.classList.add('show');
-    hideTimer = setTimeout(() => bubble.classList.remove('show'), 3200);
+    hideTimer = setTimeout(() => bubble.classList.remove('show'), ms);
   }
 
-  function wiggle() {
+  function pulse(cls, ms) {
     if (reduced.matches) return;
-    button.classList.remove('wiggle');
+    button.classList.remove(cls);
     void button.offsetWidth;
-    button.classList.add('wiggle');
+    button.classList.add(cls);
+    setTimeout(() => button.classList.remove(cls), ms);
   }
+  const wiggle = () => pulse('wiggle', 900);
+  const nudge = () => pulse('nudge', 900);
 
   function play(name, { speak = true } = {}) {
     const m = moments[name];
@@ -80,53 +90,83 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     if (speak) say(m.say);
   }
 
-  // Arrival
+  // ---------- Arrival ----------
   setTimeout(() => play('hello'), reduced.matches ? 0 : 600);
 
-  // Sections: react when a section reaches the middle of the screen.
-  const io = new IntersectionObserver(entries => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      const name = e.target.dataset.moment || null;
-      if (name === section) continue;
-      section = name;
-      if (!hovering) name ? play(name) : (setPose('still'), say(''));
+  // ---------- Scrolling: eyes follow the page, fast scrolling gets one remark ----------
+  let lastY = scrollY, lastT = performance.now(), fastSince = 0, settleTimer = 0, lookTimer = 0, hurriedAt = -1e9;
+  const isFast = () => fastSince && performance.now() - fastSince > 120;
+
+  addEventListener('scroll', () => {
+    const now = performance.now();
+    const speed = Math.abs(scrollY - lastY) / Math.max(1, now - lastT); // px per ms
+    lastY = scrollY; lastT = now;
+
+    if (!reduced.matches) {
+      button.classList.add('look');
+      clearTimeout(lookTimer);
+      lookTimer = setTimeout(() => button.classList.remove('look'), 650);
     }
+
+    if (speed > 4) {
+      fastSince ||= now;
+      if (isFast() && now - hurriedAt > 10000 && lines.hurry) {
+        hurriedAt = now;
+        say(lines.hurry, 2200);
+      }
+    } else if (speed < 1.2) fastSince = 0;
+
+    // Section lines wait until scrolling settles, so a quick scroll isn't a stream of chatter.
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => { fastSince = 0; react(); }, 260);
+  }, { passive: true });
+
+  // ---------- Sections ----------
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) section = e.target.dataset.moment || null;
+    if (!fastSince) react();
   }, { rootMargin: '-45% 0px -45% 0px' });
   sections.forEach(s => io.observe(s));
 
-  // Hovering or focusing a project. Cards that slide under a still pointer while scrolling don't count:
-  // the pointer has to actually move. Scrolling ends any hover, so he never stays leaned.
-  let hoverTimer = 0, lastPointerMove = 0;
-  addEventListener('pointermove', () => { lastPointerMove = performance.now(); }, { passive: true });
-  const hover = on => {
-    clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => {
-      if (on === hovering) return;
-      hovering = on;
-      if (on) play('hover');
-      else if (section) play(section, { speak: false });
-      else setPose('still');
-      if (!on) button.classList.remove('lean');
-    }, on ? 120 : 160);
-  };
-  if (hoverArea) {
-    hoverArea.addEventListener('pointerover', e => {
-      if (e.pointerType === 'mouse' && performance.now() - lastPointerMove < 120 && e.target.closest('.case')) hover(true);
-    });
-    hoverArea.addEventListener('pointerout', e => { if (!e.relatedTarget?.closest?.('.case')) hover(false); });
-    hoverArea.addEventListener('focusin', e => { if (e.target.closest('.case')) hover(true); });
-    hoverArea.addEventListener('focusout', e => { if (!hoverArea.contains(e.relatedTarget)) hover(false); });
-    const endHover = () => { if (hovering || button.classList.contains('lean')) hover(false); };
-    addEventListener('scroll', endHover, { passive: true, capture: true });
+  function react() {
+    if (section === spokenFor) return;
+    spokenFor = section;
+    // Let a just-said "in a hurry?" finish before the next line.
+    if (section) play(section, { speak: performance.now() - hurriedAt > 2200 });
+    else { setPose('still'); say(''); }
   }
 
-  // Press to say hi
+  // ---------- Pointing at the projects: lean in once, then straighten up ----------
+  let insideList = false, leaveTimer = 0;
+  if (hoverArea) {
+    // Movement over a card counts; cards sliding under a still pointer while scrolling don't.
+    hoverArea.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse' || !e.target.closest('.case')) return;
+      clearTimeout(leaveTimer);
+      if (insideList) return;
+      insideList = true;
+      nudge();
+      const m = moments.hover;
+      if (m?.say) say(m.say, 1800);
+    });
+    hoverArea.addEventListener('pointerleave', () => {
+      clearTimeout(leaveTimer);
+      leaveTimer = setTimeout(() => { insideList = false; }, 1500);
+    });
+    hoverArea.addEventListener('focusin', e => {
+      if (!insideList && e.target.closest('.case')) { insideList = true; nudge(); }
+    });
+    hoverArea.addEventListener('focusout', e => { if (!hoverArea.contains(e.relatedTarget)) insideList = false; });
+  }
+
+  // ---------- Press to say hi ----------
   button.addEventListener('click', () => play('poke'));
 
   // Pause frame loops while the tab is hidden.
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) clearInterval(frameTimer);
-    else if (current) { const c = current; current = null; setPose(Object.keys(ready).find(k => ready[k] === c) || 'still'); }
+    if (document.hidden) { clearInterval(frameTimer); return; }
+    const name = Object.keys(ready).find(k => ready[k] === current) || 'still';
+    current = null;
+    setPose(name);
   });
 }

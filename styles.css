@@ -1,18 +1,26 @@
 /* Homepage layout. Type, colour and frames come from assets/site.css.
-   Desktop: fixed illustration on the left, the right column scrolls. Phone: one column. */
+   Desktop: the illustration stays fixed on the left while the whole page scrolls (from anywhere
+   on the screen). Phone: one column, with the illustration as a small corner companion. */
 
-body { display: grid; grid-template-columns: 34% minmax(0, 1fr); height: 100dvh; overflow: hidden; }
-
-.figure { display: grid; justify-items: center; align-content: start; padding-top: min(96px, 13dvh); }
+html { scroll-padding-top: 76px; }
+.figure { position: fixed; top: 0; left: 0; width: 34%; height: 100dvh; display: grid; justify-items: center; align-content: start; padding-top: min(96px, 13dvh); z-index: 1; }
 .pose { position: relative; display: block; width: min(300px, 76%, 46dvh); aspect-ratio: 2 / 3; padding: 0; border: 0; background: none; cursor: pointer; transform-origin: 50% 100%; transition: transform .45s var(--ease); }
 .pose .layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; opacity: 0; transition: opacity .18s linear; }
 .pose .layer.on { opacity: 1; }
 /* Pose changes: a soft blur cross-fade, so one drawing melts into the next. */
 .pose.soft .layer { transition: opacity .5s var(--ease), filter .5s var(--ease), transform .5s var(--ease); }
 .pose.soft .layer:not(.on) { filter: blur(6px); transform: scale(.985); }
-.pose.lean { transform: rotate(2.5deg) translateX(6px); }
 .pose:focus-visible { outline-offset: 8px; border-radius: 12px; }
 
+/* Eyes drawn over the standing illustration: they look at the visitor, and toward the page while scrolling. */
+.eyes { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity .2s var(--ease); }
+.pose.still-on .eyes { opacity: 1; }
+.eyes .cover { fill: #fff; }
+.eyes .pupils { fill: #141414; transition: transform .35s var(--ease); }
+/* Looking at the page: the pupils slide right and the original drawing (already looking right) takes over. */
+.pose.look .eyes { opacity: 0; transition: opacity .25s var(--ease) .12s; }
+.pose.look .eyes .pupils { transform: translateX(8px) translateY(-1px); }
+.pose
 /* Speech bubble */
 .bubble {
   position: absolute; left: 60%; top: 2%; z-index: 2;
@@ -26,13 +34,16 @@ body { display: grid; grid-template-columns: 34% minmax(0, 1fr); height: 100dvh;
 .bubble.show { opacity: 1; transform: none; transition: opacity .25s var(--ease), transform .45s cubic-bezier(.34, 1.56, .64, 1); }
 @media (prefers-reduced-motion: no-preference) {
   .pose.wiggle { animation: wiggle .9s var(--ease); }
+  /* Lean toward the work once, then settle back. */
+  .pose.nudge { animation: nudge .9s var(--ease); }
   /* Gentle breathing for poses that ask for it (e.g. working). */
   .pose.breathe .layer.on { animation: breathe 3.6s ease-in-out infinite; transform-origin: 50% 100%; }
 }
 @keyframes breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.008) translateY(-1px); } }
+@keyframes nudge { 0%, 100% { transform: none; } 35% { transform: rotate(2.5deg) translateX(6px); } 60% { transform: rotate(2.5deg) translateX(6px); } }
 @keyframes wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-3deg); } 40% { transform: rotate(2.5deg); } 60% { transform: rotate(-2deg); } 80% { transform: rotate(1deg); } }
 
-main { overflow-y: auto; padding-inline: 8px clamp(24px, 4vw, 56px); scroll-padding-top: 76px; outline: none; }
+main { margin-left: 34%; padding-inline: 8px clamp(24px, 4vw, 56px); outline: none; }
 .topnav, .column { max-width: 780px; }
 .topnav { position: sticky; top: 0; z-index: 3; background: rgb(255 255 255 / .92); backdrop-filter: blur(8px); }
 
@@ -101,13 +112,12 @@ section > .heading, footer > .heading { margin-bottom: 28px; font-size: clamp(28
 .email:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 
 @media (max-width: 760px) {
-  body { display: block; height: auto; overflow: visible; }
   /* The character follows along in the corner so its reactions stay visible. */
-  .figure { position: fixed; right: 10px; bottom: 10px; z-index: 6; padding: 0; }
+  .figure { position: fixed; top: auto; left: auto; right: 10px; bottom: 10px; width: auto; height: auto; z-index: 6; padding: 0; }
   .pose { width: 58px; }
   .bubble { left: auto; right: 100%; top: 8%; margin-right: 4px; font-size: 12px; padding: 6px 10px; border-radius: 12px 12px 4px 12px; transform-origin: 100% 100%; }
 
-  main { overflow: visible; padding-inline: var(--side); }
+  main { margin-left: 0; padding-inline: var(--side); }
   .topnav { position: static; background: none; backdrop-filter: none; }
   .topnav .home { display: none; }
   .column { padding-top: 32px; gap: 80px; }

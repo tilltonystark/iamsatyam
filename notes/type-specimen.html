@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Type options · temporary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,50,1&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;500&family=Geist+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #232323; background: #fff; font-family: Inter, sans-serif; }
+  .opt { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; padding: 72px 24px; border-bottom: 1px solid #eee; }
+  .tag { grid-column: 1 / -1; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #646464; }
+  h1 { grid-column: 1 / 9; margin: 0; font-size: clamp(44px, 7vw, 96px); line-height: .95; font-weight: 500; letter-spacing: -.03em; }
+  .story { grid-column: 1 / 9; font-size: 18px; line-height: 1.6; max-width: 60ch; margin: 0; }
+  .facts { grid-column: 9 / 13; grid-row: 2 / 4; margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; align-content: start; font-size: 12px; line-height: 1.5; }
+  .facts dt { color: #646464; text-transform: uppercase; letter-spacing: .04em; }
+  .facts dd { margin: 0; }
+  .note { grid-column: 9 / 13; font-size: 14px; line-height: 1.5; color: #646464; font-style: italic; border-left: 1px solid #ccc; padding-left: 12px; }
+  .a h1 { font-family: Fraunces, serif; font-variation-settings: "SOFT" 50, "WONK" 1; }
+  .a .facts, .a .tag { font-family: "JetBrains Mono", monospace; }
+  .b h1 { font-family: "Bricolage Grotesque", sans-serif; font-variation-settings: "wdth" 80; font-weight: 600; }
+  .b .facts, .b .tag { font-family: "Geist Mono", monospace; }
+  @media (max-width: 760px) { h1, .story, .facts, .note { grid-column: 1 / -1; grid-row: auto; } }
+</style>
+</head>
+<body>
+<section class="opt a">
+  <p class="tag">Option A · Fraunces + Inter + JetBrains Mono</p>
+  <h1>Games, winnings and the wait to get paid</h1>
+  <dl class="facts"><dt>Role</dt><dd>Lead designer</dd><dt>Owned</dt><dd>Aviator, Plinko, Ludo and cricket flows; wallet review</dd><dt>Platform</dt><dd>Mobile</dd></dl>
+  <p class="story">Players often missed games hidden behind the bottom Games tab. I explored homepage layouts that put four or five of them up front.</p>
+  <p class="note">I sketched this table on paper first.</p>
+</section>
+<section class="opt b">
+  <p class="tag">Option B · Bricolage Grotesque + Inter + Geist Mono</p>
+  <h1>Games, winnings and the wait to get paid</h1>
+  <dl class="facts"><dt>Role</dt><dd>Lead designer</dd><dt>Owned</dt><dd>Aviator, Plinko, Ludo and cricket flows; wallet review</dd><dt>Platform</dt><dd>Mobile</dd></dl>
+  <p class="story">Players often missed games hidden behind the bottom Games tab. I explored homepage layouts that put four or five of them up front.</p>
+  <p class="note">I sketched this table on paper first.</p>
+</section>
+</body>
+</html>

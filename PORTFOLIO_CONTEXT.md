@@ -54,3 +54,40 @@ Slides and Buildojo have been removed from the homepage at Satyam’s request. C
 Keep portfolio images in normal flow with a width bounded by their container and an automatic height. Give each image its intrinsic dimensions in HTML. Cover buttons grow to enclose their screenshots. The three personal illustrations and three teaching illustrations in assets/editorial are generated editorial placeholders. Replace them with approved personal assets when available. The testimonial uses the single supplied quote.
 
 Section checks passed in Chrome at 320, 390, 768, 1024 and 1440 px, including cover and dialog image containment, keyboard dismissal and focus return. Also checked backdrop dismissal, the close button and the playground return link.
+
+## Case studies, playground and shared system (28 Nov 2026)
+
+Changes:
+- Three case studies at `work/jumbo.html`, `work/zorro.html` and `work/vertera.html`. All three are built from `content/projects.json` with one template (`work/case.js`, `work/case.css`). Images live in `assets/work/<project>/`.
+- Greptile and Workers moved to the playground grid (`playground.html`, `content/playground.json`). The character demo moved from `playground.html` to `character.html` and is one cell in the grid.
+- Slides and Buildojo stay off the site.
+- One shared look for every page in `assets/site.css`: Fraunces for headings, Inter for text, JetBrains Mono for labels, plus the shared phone, browser, app and loose frames (`assets/frames.js`). The homepage pop-up case studies were removed in favour of links.
+- Painted editorial placeholders are shown in greyscale (`.ink`) so they sit with the ink character until real photos arrive.
+- Character: the homepage illustration glances at the work while a case study is hovered or focused. On case studies a small walker crosses the margin column while you scroll (eased position, steady walk cycle, standing when idle) and sits at "Looking back". Reduced motion shows a still pose.
+- Testimonials come from `content/testimonials.json`. Placeholder quotes only render on the local preview.
+- Hosting: Cloudflare Workers static assets (`wrangler.jsonc`, `.assetsignore`, `404.html`).
+
+Confirmed by Satyam on 28 Nov 2026: Aviator went live during his time on the team; he was the sole product designer on Workers; UPI was the payout method; Jumbo's players were across India.
+
+Figma notes: the Zorro node 166-49903 no longer exists. Zorro screens now live in sections Test (213:18561), Bug (213:18863), Test Suite & Module (213:19092) and Components (213:19137). A second Jumbo section is 213:22807. Zorro, Vertera, Greptile and Workers exports are 1×; Jumbo exports are 2×. Re-export at 2× for sharper retina images.
+
+Lines written from the context but phrased by Claude, to check:
+- Jumbo: why leading with four or five games worked; the margin notes ("The tab wasn't broken…", "The hardest part of this layout was the list of games we left out", "Whenever a screen says 'pending'…"); the Looking back reflection; the "Before" and "Explored" option framing.
+- Zorro: "Me, working with the founder"; the two-option framing and its "why"; detail captions on the test editor and bug bash; the state table wording; the Looking back line.
+- Vertera: the "Everything upfront / Title only" options are framings of "showing every detail made it harder to scan, hiding too much made the next step unclear"; "A title and one line on why" is read from the home screen and labelled "In the app", not as Satyam's final decision; platform "iOS" is inferred from the 390×844 frames; the Looking back line.
+- Jumbo platform "Android app" is inferred from the Figma frame names.
+
+Empty image slots (recommended size · frame · what to show):
+- jumbo/before-home.png · 720×1600 · phone · home screen before games moved up
+- jumbo/home-explorations.png · 1600×1000 · loose · homepage layout explorations
+- zorro/before-paused-run.png · 1440×900 · browser · run view before the redesign
+- vertera/course-everything.png · 390×844 · phone · course layout showing every detail
+- vertera/course-minimal.png · 390×844 · phone · course layout with titles only
+- vertera/pricing.png · 390×844 · phone · pricing iteration
+- vertera/onboarding.png · 390×844 · phone · onboarding iteration
+
+Open questions:
+- Timelines for each project (the facts row hides empty values).
+- Jumbo revenue, first-week player totals and failure counts stay out until records confirm them.
+- Real testimonials for Jumbo, Pixelup/Greptile and Workers.
+- Real photos for the side quests and teaching rows.

@@ -1,0 +1,3 @@
+<!doctype html><meta charset="utf-8"><style>body{margin:0}iframe{border:0;display:block}</style>
+<script>const q=new URLSearchParams(location.search);document.write(`<iframe src="${q.get('u')}" width="${q.get('w')}" height="${q.get('h')||13000}"></iframe>`);
+const y=+q.get('y')||0;if(y)addEventListener('load',()=>{const f=document.querySelector('iframe');setTimeout(()=>{let i=0;const t=setInterval(()=>{f.contentWindow.scrollTo({top:y*(i+1)/20,behavior:"instant"});if(++i>=20)clearInterval(t)},30)},1200)});</script>

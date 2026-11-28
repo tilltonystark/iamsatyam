@@ -1,0 +1,11 @@
+// Cloudflare hosting for the portfolio. The whole folder is served as a static site.
+// Files listed in .assetsignore are not uploaded.
+{
+  "name": "iamsatyam",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

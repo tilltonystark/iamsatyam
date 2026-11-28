@@ -1,0 +1,9 @@
+{
+  "_how": "Each entry is one quote on the homepage, in this order. To add a real quote, fill in text and by, and set placeholder to false. Entries with placeholder: true only show on your own preview (127.0.0.1), never on the live site.",
+  "quotes": [
+    { "text": "Experience was good. Easy to collaborate with and quick communication. Good variety of explorations as well.", "by": "Founder of Zorro (YC)", "placeholder": false },
+    { "text": "A quote from someone at Jumbo, for example a PM or one of the designers you managed.", "by": "Name · Role, Jumbo", "placeholder": true },
+    { "text": "A quote from someone at Pixelup or Greptile about the brand and product work.", "by": "Name · Role, Pixelup", "placeholder": true },
+    { "text": "A quote from the Workers founder about taking the playground to an MVP.", "by": "Name · Founder, Workers", "placeholder": true }
+  ]
+}

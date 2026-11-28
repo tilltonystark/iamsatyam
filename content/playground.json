@@ -1,0 +1,115 @@
+{
+  "_how": "Each item is one cell in the playground grid. Put the image in assets/work/<folder>/ and list it here. size is the image's width×height in pixels. frame is browser, phone, app, loose or bare. tags become the filter buttons. link is optional; without it, clicking opens the image larger. Newest first.",
+  "items": [
+    {
+      "title": "Code review analytics",
+      "client": "Greptile",
+      "folder": "greptile",
+      "file": "analytics.png",
+      "size": "1000×998",
+      "frame": "app",
+      "tags": [
+        "Interface",
+        "Dashboards"
+      ],
+      "alt": "Greptile analytics with review metrics, charts and recent review activity",
+      "note": "Review metrics next to the review conversations behind them."
+    },
+    {
+      "title": "Starting a worker from an issue",
+      "client": "Workers",
+      "folder": "workers",
+      "file": "new-worker.png",
+      "size": "1000×625",
+      "frame": "browser",
+      "tags": [
+        "Interface",
+        "Zero to one"
+      ],
+      "alt": "Workers dialog for creating a new worker from an existing issue",
+      "note": "The first product interface for an agentic developer tool."
+    },
+    {
+      "title": "Billing and paid seats",
+      "client": "Greptile",
+      "folder": "greptile",
+      "file": "billing.png",
+      "size": "1400×968",
+      "frame": "app",
+      "tags": [
+        "Interface",
+        "Pricing"
+      ],
+      "alt": "Greptile feature usage showing code review spend, active developers and paid seats",
+      "note": "Which activity counts toward the bill, in one view."
+    },
+    {
+      "title": "Character playground",
+      "client": "Side project",
+      "folder": "../../character-motion/assets",
+      "file": "front.webp",
+      "size": "300×635",
+      "frame": "bare",
+      "tags": [
+        "Motion"
+      ],
+      "link": "character.html",
+      "alt": "Illustrated Satyam waving",
+      "note": "Move your pointer and he follows it with his eyes."
+    },
+    {
+      "title": "Following the investigation",
+      "client": "Workers",
+      "folder": "workers",
+      "file": "investigation.png",
+      "size": "1400×875",
+      "frame": "browser",
+      "tags": [
+        "Interface",
+        "Zero to one"
+      ],
+      "alt": "Workers activity view with investigation notes as the agent works",
+      "note": "Evidence shows up as the worker finds it."
+    },
+    {
+      "title": "Modules",
+      "client": "Zorro",
+      "folder": "zorro",
+      "file": "modules.png",
+      "size": "1440×900",
+      "frame": "browser",
+      "tags": [
+        "Interface"
+      ],
+      "link": "work/zorro.html",
+      "alt": "Zorro modules list with reusable test steps and their health",
+      "note": "Reusable steps you can drop into any test."
+    },
+    {
+      "title": "Projects home",
+      "client": "Workers",
+      "folder": "workers",
+      "file": "home.png",
+      "size": "1440×900",
+      "frame": "browser",
+      "tags": [
+        "Interface",
+        "Zero to one"
+      ],
+      "alt": "Workers organisation home listing projects"
+    },
+    {
+      "title": "Project docs",
+      "client": "Workers",
+      "folder": "workers",
+      "file": "home-2.png",
+      "size": "1440×900",
+      "frame": "browser",
+      "tags": [
+        "Interface",
+        "Zero to one"
+      ],
+      "alt": "Workers docs page with topics and a data model specification"
+    }
+  ]
+}

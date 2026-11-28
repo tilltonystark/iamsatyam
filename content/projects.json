@@ -1,0 +1,584 @@
+{
+  "order": [
+    "jumbo",
+    "zorro",
+    "vertera"
+  ],
+  "projects": {
+    "jumbo": {
+      "name": "Jumbo",
+      "kind": "Game design · design leadership",
+      "tint": "#ede8f4",
+      "title": "Games, winnings and the wait to get paid",
+      "summary": "I designed Aviator from scratch, designed Plinko, owned the Ludo and cricket flows, and led two designers on the wallet.",
+      "hero": [
+        {
+          "file": "home.png",
+          "frame": "phone",
+          "size": "720×1600",
+          "show": "home screen with games up front",
+          "alt": "Jumbo home screen with featured games and a Ludo tournament card"
+        },
+        {
+          "file": "aviator.png",
+          "frame": "phone",
+          "size": "720×1600",
+          "show": "Aviator during a live round",
+          "alt": "Aviator mid-round, with the multiplier climbing and the bet controls below"
+        },
+        {
+          "file": "wallet.png",
+          "frame": "phone",
+          "size": "720×1600",
+          "show": "wallet with all three balances",
+          "alt": "Jumbo wallet showing shopping credits, game tokens and cash winnings"
+        }
+      ],
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Lead designer"
+        },
+        {
+          "label": "Team",
+          "value": "Me, plus Siddharth and Rankesh on the wallet"
+        },
+        {
+          "label": "Platform",
+          "value": "Android app for players across India"
+        },
+        {
+          "label": "Timeline",
+          "value": "",
+          "_todo": "Satyam: add dates you're comfortable sharing. Empty values stay hidden."
+        }
+      ],
+      "owned": [
+        "Aviator, designed from scratch",
+        "Plinko",
+        "Ludo and cricket flows, including women's cricket",
+        "Homepage layouts that surface games",
+        "Review of the wallet work"
+      ],
+      "moment": [
+        {
+          "text": "Jumbo had more games than most players ever found. They lived behind the Games tab at the bottom of the screen, and players often didn't open it.",
+          "note": "The tab wasn't broken. It just asked people to go looking."
+        },
+        {
+          "text": "So the games were there. They just weren't where people were looking."
+        }
+      ],
+      "decision": {
+        "heading": "Bring the games to the home screen, but not all of them",
+        "intro": [
+          {
+            "text": "Another way into the catalogue wouldn't have helped. The home screen was where players already were, so it had to do the job the tab wasn't doing."
+          }
+        ],
+        "options": [
+          {
+            "label": "Before",
+            "title": "Leave it to the tab",
+            "text": "Every game is one tap away, behind a tab players often skip.",
+            "media": {
+              "file": "before-home.png",
+              "frame": "phone",
+              "size": "720×1600",
+              "show": "home screen before games moved up",
+              "alt": "The earlier Jumbo home screen, with games behind the bottom tab"
+            }
+          },
+          {
+            "label": "Explored",
+            "title": "Show more of the catalogue",
+            "text": "I tried homepage layouts that put more of the games on the first screen.",
+            "media": {
+              "file": "home-explorations.png",
+              "frame": "loose",
+              "size": "1600×1000",
+              "show": "homepage layout explorations side by side",
+              "alt": "Homepage layout explorations for surfacing more games"
+            }
+          },
+          {
+            "label": "Chosen",
+            "chosen": true,
+            "title": "Lead with four or five",
+            "text": "Four or five games get priority, each with enough room to read as a game instead of a row in a list.",
+            "media": {
+              "file": "home.png",
+              "frame": "phone",
+              "size": "720×1600",
+              "show": "home screen with games up front",
+              "alt": "Jumbo home screen with a carousel of featured games"
+            }
+          }
+        ],
+        "why": [
+          {
+            "text": "A home screen that shows everything is just the Games tab moved up. Choosing four or five forced the question of which games mattered most, and it gave each one room to show what kind of game it was.",
+            "note": "The hardest part of this layout was the list of games we left out."
+          }
+        ]
+      },
+      "details": [
+        {
+          "media": {
+            "file": "aviator.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "Aviator during a live round",
+            "alt": "Aviator mid-round, with large bet and play controls at the bottom"
+          },
+          "caption": "Aviator rounds are quick, so I went through the bottom controls round by round. The actions you repeat stay large, and getting back into the next round takes as few taps as possible.",
+          "note": "Aviator and Plinko were the two I designed from scratch."
+        },
+        {
+          "media": {
+            "file": "how-to-play.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "How to play, first card",
+            "alt": "How to play card explaining when to place a bet, shown over the game"
+          },
+          "caption": "How to play sits on top of the real game, so each rule points at the control you'll actually use instead of describing it in a separate screen."
+        }
+      ],
+      "others": {
+        "heading": "Three kinds of money, one wallet",
+        "text": [
+          {
+            "text": "I managed two designers, Siddharth and Rankesh, who designed the wallet while I reviewed. It had a real problem to solve. One top-up gave you game tokens and shopping credits. Winning gave you a third balance, cash. Each one did something different.",
+            "note": "My part here was review. Siddharth and Rankesh made the screens."
+          }
+        ],
+        "table": {
+          "caption": "What each balance was for",
+          "rows": [
+            [
+              "Game tokens",
+              "Play games"
+            ],
+            [
+              "Shopping credits",
+              "Spend in the store"
+            ],
+            [
+              "Cash winnings",
+              "Withdraw to a bank, or convert into tokens or credits"
+            ]
+          ]
+        },
+        "media": [
+          {
+            "file": "wallet-choices.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "the three ways to use winnings",
+            "alt": "Withdraw to bank, convert to game tokens or convert to shopping credits, each with its consequence"
+          },
+          {
+            "file": "top-up.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "top-up with the benefit breakdown",
+            "alt": "Top-up screen showing how one payment splits into shopping credits and game tokens"
+          }
+        ],
+        "after": [
+          {
+            "text": "Jumbo wanted players to consider converting winnings back into tokens. The wallet put that incentive right where the choice happened, next to a plain bank withdrawal, with the consequence of each option spelled out."
+          },
+          {
+            "text": "Then there's waiting. Pending identity verification, missing payout details and a withdrawal under manual review can all look like 'pending', but they're different waits. Someone still linking a UPI account has a task to finish. Someone whose withdrawal is under review has already done their part. The wallet and transaction states were designed around that difference.",
+            "note": "Whenever a screen says 'pending', I ask whose move it is."
+          }
+        ],
+        "media2": [
+          {
+            "file": "withdrawal-processing.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "withdrawal in progress",
+            "alt": "Processing withdrawal screen with a masked account number"
+          },
+          {
+            "file": "withdrawal-review.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "payment in process with a step-by-step status",
+            "alt": "Payment in process, with initiated, review and payment steps"
+          },
+          {
+            "file": "conversion.png",
+            "frame": "phone",
+            "size": "720×1600",
+            "show": "conversion completed",
+            "alt": "Conversion completed, showing transferable winnings, bonus and the amount deposited"
+          }
+        ]
+      },
+      "lookingBack": [
+        {
+          "text": "Aviator went live while I was on the team. The thing I took away from the wallet is that 'pending' is never just one state. When something is waiting now, the first thing I design is who acts next: us, or the player."
+        }
+      ],
+      "_todo": "Satyam: confirm revenue, first-week player totals and failure counts from records before adding any of them."
+    },
+    "zorro": {
+      "name": "Zorro",
+      "kind": "Product redesign",
+      "tint": "#dce9e5",
+      "title": "When an automated test needs a person",
+      "summary": "Ahead of an investor meeting, I mapped the fields across tests, bugs and reports, sketched the tables on paper, and redesigned the views a tester sees while an agent runs.",
+      "hero": [
+        {
+          "file": "paused-run.png",
+          "frame": "browser",
+          "size": "1440×900",
+          "show": "run paused at sign-in",
+          "alt": "A Zorro test run paused at a login screen, with the activity panel asking for credentials"
+        }
+      ],
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Product designer"
+        },
+        {
+          "label": "Team",
+          "value": "Me, working with the founder"
+        },
+        {
+          "label": "Platform",
+          "value": "Web app for teams testing web and mobile products"
+        },
+        {
+          "label": "Timeline",
+          "value": "",
+          "_todo": "Satyam: add dates if you want them shown."
+        }
+      ],
+      "owned": [
+        "Mapping fields across tests, bugs and reports",
+        "Table layouts, sketched on paper first",
+        "What belongs on a dedicated detail page",
+        "Run states, including the paused run",
+        "High-fidelity exploration with Claude"
+      ],
+      "moment": [
+        {
+          "text": "Zorro lets a team describe a test, or ask an agent to explore an app for bugs. A run can take several minutes, so what the screen says during that time matters as much as the final report."
+        },
+        {
+          "text": "A sign-in screen exposed a contradiction. The activity log asked for credentials, while the main panel still implied the agent was scanning.",
+          "note": "The agent knew it was stuck. The screen didn't."
+        }
+      ],
+      "momentHeading": "The agent stopped, and the screen kept going",
+      "decision": {
+        "heading": "Explain the pause where people are already looking",
+        "intro": [
+          {
+            "text": "The fix wasn't a louder log entry. The pause had to show up next to the thing the agent was stuck on."
+          }
+        ],
+        "options": [
+          {
+            "label": "Before",
+            "title": "The log asks, the screen says scanning",
+            "text": "The request for credentials sits in the activity log while the main panel looks busy.",
+            "media": {
+              "file": "before-paused-run.png",
+              "frame": "browser",
+              "size": "1440×900",
+              "show": "run view before the redesign, log asking for credentials",
+              "alt": "The earlier run view, with the credential request only in the activity log"
+            }
+          },
+          {
+            "label": "Chosen",
+            "chosen": true,
+            "title": "Pause beside the browser preview",
+            "text": "The run says it's paused and why, right next to the login screen it's stuck on, with three ways out: add credentials, skip the step, or stop the run.",
+            "media": {
+              "file": "paused-run.png",
+              "frame": "browser",
+              "size": "1440×900",
+              "show": "run paused at sign-in",
+              "alt": "Paused run: a banner says Zorro needs your input, and the side panel offers credentials, skip step and stop run"
+            }
+          }
+        ],
+        "why": [
+          {
+            "text": "Someone glancing at a run should see the same thing the log says. Putting the pause beside the preview means you see the screen the agent is stuck on and what you can do about it, in one place."
+          }
+        ]
+      },
+      "details": [
+        {
+          "media": {
+            "file": "tests.png",
+            "frame": "browser",
+            "size": "1440×900",
+            "show": "tests list",
+            "alt": "Tests list with platform, last eight runs as a bar of results, and last run time"
+          },
+          "caption": "I wrote down every field across tests, bugs and reports, then sketched which ones help someone choose a row and which belong on the detail page. The list keeps only what you need to pick a test.",
+          "note": "I sketched this table on paper first."
+        },
+        {
+          "media": {
+            "file": "test-editor.png",
+            "frame": "browser",
+            "size": "1440×900",
+            "show": "test editor, reviewing steps",
+            "alt": "Test editor with numbered steps on the left and a live browser preview on the right"
+          },
+          "caption": "Steps and the browser preview sit side by side, so reviewing a step means checking it against the page it runs on."
+        },
+        {
+          "media": {
+            "file": "bug-bash.png",
+            "frame": "browser",
+            "size": "1440×900",
+            "show": "bug bash home",
+            "alt": "Bug bash home asking what Zorro should explore today, with recent bug bashes below"
+          },
+          "caption": "A bug bash starts with one question, what should Zorro explore, and recent runs sit underneath so you can see what's already been covered."
+        }
+      ],
+      "detailsHeading": "Tables, steps and runs",
+      "others": {
+        "heading": "Exploring fast, ahead of the investor meeting",
+        "text": [
+          {
+            "text": "The founder wanted the product to feel consistent before an investor meeting. I worked directly with them, and used Claude to turn selected paper sketches into high-fidelity alternatives, then refined the layouts around real run states.",
+            "note": "Claude got me to high fidelity quickly. The paper sketches decided what was worth getting there."
+          }
+        ],
+        "table": {
+          "caption": "Every state answers one question: can the agent carry on by itself?",
+          "rows": [
+            [
+              "Drafting steps",
+              "You're writing. The agent waits for you."
+            ],
+            [
+              "Running a bug bash",
+              "The agent carries on by itself."
+            ],
+            [
+              "Waiting for input",
+              "It needs you before it can continue."
+            ],
+            [
+              "Writing the report",
+              "The agent carries on by itself."
+            ]
+          ]
+        },
+        "media": [
+          {
+            "file": "run-failed.png",
+            "frame": "browser",
+            "size": "1440×900",
+            "show": "failed run with the failing step",
+            "alt": "A failed run, showing which step failed and the error next to the preview"
+          },
+          {
+            "file": "bug-report.png",
+            "frame": "browser",
+            "size": "1440×900",
+            "show": "agent writing the bug report",
+            "alt": "Bug bash activity while Zorro writes the report"
+          }
+        ]
+      },
+      "lookingBack": [
+        {
+          "text": "The resulting designs cover drafting and reviewing test steps, running a bug bash, waiting for input and assembling the report. What I'd keep from this project is the order I worked in: fields first, paper second, high fidelity last."
+        }
+      ],
+      "quote": {
+        "text": "Experience was good. Easy to collaborate with and quick communication. Good variety of explorations as well.",
+        "by": "Founder of Zorro (YC)"
+      }
+    },
+    "vertera": {
+      "name": "Vertera Health",
+      "kind": "Patient learning experience",
+      "tint": "#e4e2f1",
+      "title": "Finding the next lesson in spine recovery",
+      "summary": "I worked on course layouts for a spine care app, and on how much a patient needs to know before starting a lesson or exercise.",
+      "hero": [
+        {
+          "file": "home.png",
+          "frame": "phone",
+          "size": "390×844",
+          "show": "home screen with today's sessions and learning",
+          "alt": "Vertera home with today's sessions and a learning card about lumbar fusion",
+          "crop": true
+        },
+        {
+          "file": "journal.png",
+          "frame": "phone",
+          "size": "390×844",
+          "show": "daily symptom check-in",
+          "alt": "Daily check-in asking how severe the pain is on a 0 to 10 scale"
+        },
+        {
+          "file": "track.png",
+          "frame": "phone",
+          "size": "390×844",
+          "show": "activity tracking",
+          "alt": "Track screen with average daily steps and a recommendation"
+        }
+      ],
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Product designer"
+        },
+        {
+          "label": "Team",
+          "value": "A small team"
+        },
+        {
+          "label": "Platform",
+          "value": "iOS app for people preparing for or recovering from spine surgery"
+        },
+        {
+          "label": "Timeline",
+          "value": "",
+          "_todo": "Satyam: add dates if you want them shown."
+        }
+      ],
+      "owned": [
+        "Course layouts",
+        "How much to show before a lesson or exercise",
+        "Pricing iterations, with the team",
+        "Onboarding iterations, with the team"
+      ],
+      "momentHeading": "How much is enough before a lesson?",
+      "moment": [
+        {
+          "text": "Vertera brings exercises, workouts and lessons into a patient's recovery plan. Before starting a lesson, someone needs to decide whether it applies to them today."
+        },
+        {
+          "text": "Showing every detail upfront made a course harder to scan. Hiding too much made the next step unclear.",
+          "note": "People reading about their own surgery don't skim the way the rest of us do."
+        }
+      ],
+      "decision": {
+        "heading": "Enough to decide, not enough to drown in",
+        "intro": [
+          {
+            "text": "I explored course layouts around one practical question: what does someone need to see to decide whether this lesson is for today?"
+          }
+        ],
+        "options": [
+          {
+            "label": "Explored",
+            "title": "Everything upfront",
+            "text": "Every detail on the card, which made a course harder to scan.",
+            "media": {
+              "file": "course-everything.png",
+              "frame": "phone",
+              "size": "390×844",
+              "show": "course layout showing every detail",
+              "alt": "Course layout exploration with every detail shown upfront"
+            }
+          },
+          {
+            "label": "Explored",
+            "title": "Title only",
+            "text": "Clean, but you can't tell whether the lesson applies to you without opening it.",
+            "media": {
+              "file": "course-minimal.png",
+              "frame": "phone",
+              "size": "390×844",
+              "show": "course layout with titles only",
+              "alt": "Course layout exploration with titles only"
+            }
+          },
+          {
+            "label": "In the app",
+            "chosen": true,
+            "title": "A title and one line on why",
+            "text": "Each lesson card says what it is and what it will help you understand, so you can decide without opening it.",
+            "media": {
+              "file": "home.png",
+              "frame": "phone",
+              "size": "390×844",
+              "show": "learning card on home",
+              "alt": "Learning card: Lumbar Fusion, understand your surgery, with a one-line description",
+              "crop": true,
+              "focus": "50% 58%"
+            }
+          }
+        ],
+        "why": [
+          {
+            "text": "Scheduled sessions and learning got different places on the home screen, so someone looking for a lesson can tell it apart from a workout."
+          }
+        ]
+      },
+      "detailsHeading": "The app around the courses",
+      "details": [
+        {
+          "media": {
+            "file": "journal.png",
+            "frame": "phone",
+            "size": "390×844",
+            "show": "daily symptom check-in",
+            "alt": "Daily check-in with three 0 to 10 scales for pain and tingling"
+          },
+          "caption": "For context, this is the daily check-in. Lessons had to fit around a routine patients already had, not compete with it."
+        },
+        {
+          "media": {
+            "file": "track-range.png",
+            "frame": "phone",
+            "size": "390×844",
+            "show": "picking a date range for a report",
+            "alt": "Date range picker for generating a recovery report"
+          },
+          "caption": "Also context: tracking and reports, the other place patients spend time in the app."
+        }
+      ],
+      "others": {
+        "heading": "Courses, pricing and onboarding",
+        "text": [
+          {
+            "text": "I worked with a small team. My part was the course layouts. I also contributed iterations for pricing and onboarding.",
+            "note": "The home and check-in screens are the team's. I'm showing them so the course work has context."
+          }
+        ],
+        "media": [
+          {
+            "file": "pricing.png",
+            "frame": "phone",
+            "size": "390×844",
+            "show": "pricing iteration",
+            "alt": "Pricing screen iteration"
+          },
+          {
+            "file": "onboarding.png",
+            "frame": "phone",
+            "size": "390×844",
+            "show": "onboarding iteration",
+            "alt": "Onboarding screen iteration"
+          }
+        ]
+      },
+      "lookingBack": [
+        {
+          "text": "My deliverable was a set of course layout iterations for the team. Next time I'd test the course cards separately with people before surgery and after it, because what feels like enough at one stage can feel like too much at the other."
+        }
+      ]
+    }
+  }
+}

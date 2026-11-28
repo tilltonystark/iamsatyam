@@ -1,0 +1,13 @@
+.git
+.wrangler
+node_modules
+notes
+*.md
+wrangler.jsonc
+.assetsignore
+.gitignore
+character-motion/build.mjs
+character-motion/server.mjs
+character-motion/demo.jsx
+character-motion/package.json
+character-motion/index.html

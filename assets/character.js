@@ -35,14 +35,28 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
   let section = null, spokenFor = null, hideTimer = 0, basePose = 'still', looking = false;
 
   // ---------- Drawing ----------
-  function show(src, soft) {
-    button.classList.toggle('still-on', src === stillSrc);
-    if (src === shownSrc) return;
+  // Poses that share the standing stance only differ a little, so they swap quickly.
+  // Changing stance (standing <-> sitting at the laptop) is a bigger change and gets a slower blend.
+  const seated = new Set(['working']);
+  let shownName = 'still', eyesTimer = 0;
+  const TIMING = { frame: [120, 0], small: [180, 2], big: [450, 6] }; // [ms, blur px]
+
+  function show(src, kind, name) {
+    const [ms, blur] = TIMING[kind];
+    button.style.setProperty('--fade', ms + 'ms');
+    button.style.setProperty('--blur', blur + 'px');
+    // The drawn-on eyes belong to the standing drawing only: hide them the moment a change starts,
+    // and bring them back once the standing drawing has fully arrived, so two sets of eyes never overlap.
+    clearTimeout(eyesTimer);
+    if (src !== stillSrc) button.classList.remove('still-on');
+    if (src === shownSrc) { if (src === stillSrc) button.classList.add('still-on'); return; }
     shownSrc = src;
     const next = layers[1 - front], prev = layers[front];
-    button.classList.toggle('soft', !!soft);
     next.src = src;
-    const swap = () => { next.classList.add('on'); prev.classList.remove('on'); front = 1 - front; };
+    const swap = () => {
+      next.classList.add('on'); prev.classList.remove('on'); front = 1 - front;
+      if (src === stillSrc) eyesTimer = setTimeout(() => button.classList.add('still-on'), ms);
+    };
     next.decode ? next.decode().then(swap, swap) : swap();
   }
 
@@ -50,15 +64,18 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     const pose = ready[name] || still;
     if (name === 'wave' && !ready.wave) wiggle();
     if (pose === current) return;
+    const effective = ready[name] ? name : 'still'; // a missing pose shows the standing drawing
+    const kind = seated.has(effective) !== seated.has(shownName) ? 'big' : 'small';
+    shownName = effective;
     current = pose;
     clearInterval(frameTimer);
     frameIndex = 0;
-    show(pose.frames[0], true);
+    show(pose.frames[0], kind, name);
     button.classList.toggle('breathe', pose.breathe && !reduced.matches);
     if (pose.frames.length > 1 && !reduced.matches) {
       frameTimer = setInterval(() => {
         frameIndex = (frameIndex + 1) % pose.frames.length;
-        show(pose.frames[frameIndex], false);
+        show(pose.frames[frameIndex], 'frame', name);
       }, 1000 / pose.fps);
     }
   }

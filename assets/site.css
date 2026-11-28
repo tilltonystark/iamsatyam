@@ -7,9 +7,9 @@
 
 :root {
   --ink: #1f1f1d;
-  --muted: #6a6a66;
-  --rule: #e7e6e1;
-  --surface: #f5f4f0;
+  --muted: #6b6b6b;
+  --rule: #e8e8e8;
+  --surface: #f4f4f4;
   --link: #3f63a8;
   --tint: var(--surface);
   --radius: 8px;
@@ -47,9 +47,11 @@ a:hover { color: var(--link); }
 .topnav a { text-decoration: none; }
 .topnav .home { font: 500 22px/1 var(--display); letter-spacing: -.02em; }
 .topnav nav { display: flex; gap: clamp(14px, 2vw, 24px); }
-.topnav nav a { padding-block: 8px; font: 500 15px/1.2 var(--text); color: var(--muted); }
+/* Regular weight; semibold on hover. The hidden copy reserves the bold width so nothing shifts. */
+.topnav nav a { display: inline-grid; padding-block: 10px; font: 400 15px/1.2 var(--text); color: var(--muted); text-decoration: none; transition: color .15s var(--ease); }
+.topnav nav a::after { content: attr(data-text); font-weight: 600; height: 0; overflow: hidden; visibility: hidden; pointer-events: none; }
+.topnav nav a:hover, .topnav nav a:focus-visible { color: var(--ink); font-weight: 600; text-decoration: none; }
 .topnav nav a[aria-current="page"] { color: var(--ink); }
-.topnav nav a:hover { color: var(--ink); text-decoration: underline; }
 
 /* Arrow link */
 .more { display: inline-flex; align-items: center; gap: 6px; font: 500 15px/1.4 var(--text); letter-spacing: -.005em; text-decoration: none; }
@@ -66,11 +68,11 @@ a:hover { color: var(--link); }
 .slot.crop .frame img, .slot.crop .frame video { aspect-ratio: var(--ratio); object-fit: cover; object-position: top; }
 
 /* Loading: a wireframe sketch first, then the real image resolves over it from a soft blur. */
-.media { position: relative; overflow: hidden; background: #f7f6f2; }
+.media { position: relative; overflow: hidden; background: #f6f6f6; }
 .wire { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .5s var(--ease) .25s; }
-.wire .b { fill: #ecebe5; }
-.wire .d { fill: #dcdbd4; }
-.wire .l { fill: #e4e3dc; }
+.wire .b { fill: #ececec; }
+.wire .d { fill: #dcdcdc; }
+.wire .l { fill: #e4e4e4; }
 .media img, .media video { position: relative; opacity: 0; filter: blur(14px); transform: scale(1.015); transition: opacity .7s var(--ease), filter .8s var(--ease), transform .8s var(--ease); }
 .media.loaded img, .media.loaded video { opacity: 1; filter: none; transform: none; }
 .media.loaded .wire { opacity: 0; }
@@ -103,8 +105,8 @@ a:hover { color: var(--link); }
 .ph {
   display: grid; place-content: center; gap: 8px; padding: 16px; text-align: center;
   aspect-ratio: var(--ratio, 16 / 10);
-  background: repeating-linear-gradient(-45deg, #f7f7f5 0 10px, #f0efeb 10px 20px);
-  color: #6b6b66; font: 500 12px/1.5 var(--text);
+  background: repeating-linear-gradient(-45deg, #f7f7f7 0 10px, #f0f0f0 10px 20px);
+  color: #6b6b6b; font: 500 12px/1.5 var(--text);
 }
 .ph strong { color: var(--ink); font-weight: 600; }
 .slot.phone .ph { background: repeating-linear-gradient(-45deg, #2a2a2a 0 10px, #242424 10px 20px); color: #bdbdb8; }

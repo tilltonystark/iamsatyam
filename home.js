@@ -19,7 +19,7 @@ json('content/projects.json').then(data => {
   list.innerHTML = data.order.map(slug => {
     const p = data.projects[slug];
     const covers = (p.cover || p.hero || []).map(m => slot(m, `assets/work/${slug}/`)).join('');
-    return `<a class="case" href="work/${slug}.html" style="--tint:${esc(p.tint)}">
+    return `<a class="case" href="work/${slug}.html">
       <div class="cover panel">${covers}</div>
       <div class="meta"><span class="case-name">${esc(p.name)}</span><span class="label">${esc(p.kind)}</span><p>${esc(p.summary)}</p><span class="more">Read the case study</span></div>
     </a>`;

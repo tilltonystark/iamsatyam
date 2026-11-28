@@ -41,9 +41,9 @@ section.chapter { padding-top: clamp(56px, 6vw, 88px); scroll-margin-top: 24px; 
 .note {
   font: italic 400 17px/1.45 var(--display);
   font-variation-settings: "SOFT" 100, "WONK" 1;
-  color: #4b4b48;
+  color: #4b4b4b;
   padding-left: 16px;
-  border-left: 1px solid #cfcfc9;
+  border-left: 1px solid #d4d4d4;
 }
 
 /* Decision options */
@@ -122,6 +122,7 @@ section.chapter { padding-top: clamp(56px, 6vw, 88px); scroll-margin-top: 24px; 
   .option { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); column-gap: 20px; align-items: center; }
   .option .shot { grid-row: 1 / 5; }
   .detail .shot, .detail .words, .detail.flip .shot, .detail.flip .words { grid-column: 1 / -1; grid-row: auto; }
+  .walker { width: 40px; height: 70px; bottom: 10px; }
 }
 @media (max-width: 560px) {
   html { font-size: 16px; }

@@ -95,8 +95,10 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
   }, { rootMargin: '-45% 0px -45% 0px' });
   sections.forEach(s => io.observe(s));
 
-  // Hovering or focusing a project
-  let hoverTimer = 0;
+  // Hovering or focusing a project. Cards that slide under a still pointer while scrolling don't count:
+  // the pointer has to actually move. Scrolling ends any hover, so he never stays leaned.
+  let hoverTimer = 0, lastPointerMove = 0;
+  addEventListener('pointermove', () => { lastPointerMove = performance.now(); }, { passive: true });
   const hover = on => {
     clearTimeout(hoverTimer);
     hoverTimer = setTimeout(() => {
@@ -106,13 +108,17 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
       else if (section) play(section, { speak: false });
       else setPose('still');
       if (!on) button.classList.remove('lean');
-    }, on ? 80 : 220);
+    }, on ? 120 : 160);
   };
   if (hoverArea) {
-    hoverArea.addEventListener('pointerover', e => { if (e.target.closest('.case')) hover(true); });
+    hoverArea.addEventListener('pointerover', e => {
+      if (e.pointerType === 'mouse' && performance.now() - lastPointerMove < 120 && e.target.closest('.case')) hover(true);
+    });
     hoverArea.addEventListener('pointerout', e => { if (!e.relatedTarget?.closest?.('.case')) hover(false); });
     hoverArea.addEventListener('focusin', e => { if (e.target.closest('.case')) hover(true); });
     hoverArea.addEventListener('focusout', e => { if (!hoverArea.contains(e.relatedTarget)) hover(false); });
+    const endHover = () => { if (hovering || button.classList.contains('lean')) hover(false); };
+    addEventListener('scroll', endHover, { passive: true, capture: true });
   }
 
   // Press to say hi

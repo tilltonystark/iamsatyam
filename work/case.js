@@ -28,7 +28,7 @@ function render(data) {
   const next = data.projects[nextSlug];
 
   document.title = `${p.name} — Satyam Gopal`;
-  document.documentElement.style.setProperty('--tint', p.tint || '#f5f4f0');
+  document.documentElement.style.setProperty('--tint', p.tint || '#f4f4f4');
 
   const facts = (p.facts || []).filter(f => f.value)
     .map(f => `<div><dt class="label">${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join('');
@@ -76,10 +76,10 @@ function render(data) {
     <header class="wrap topnav">
       <a class="home" href="../index.html">Satyam.</a>
       <nav aria-label="Site">
-        <a href="../index.html#work">Work</a>
-        <a href="../playground.html">Playground</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../index.html#work" data-text="Work">Work</a>
+        <a href="../playground.html" data-text="Playground">Playground</a>
+        <a href="../index.html#about" data-text="About">About</a>
+        <a href="../index.html#contact" data-text="Contact">Contact</a>
       </nav>
     </header>
     <main id="main" class="wrap">
@@ -99,7 +99,7 @@ function render(data) {
   healSlots(root);
   reveal(root.querySelectorAll('.hero > *, .hero-shots, .facts, .chapter-head > *, .para > *, .option, .detail .shot, .detail .words, .ledger, .strip, .why, .quote, .next'));
 
-  if (matchMedia('(min-width: 861px)').matches) {
+  {
     mountWalker({
       base: '../character-motion/assets/',
       track: 'viewport',

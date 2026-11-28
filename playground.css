@@ -12,7 +12,7 @@ main h1 { font-size: clamp(40px, 4.4vw, 64px); padding: clamp(24px, 3vw, 40px) 4
   color: var(--ink); background: var(--surface);
   transition: background-color .15s var(--ease), color .15s var(--ease);
 }
-.chips button:hover { background: #ebe9e3; }
+.chips button:hover { background: #e8e8e8; }
 .chips button[aria-pressed="true"] { background: var(--ink); color: #fff; }
 
 /* Four equal columns, 12px gaps. Each cell is just the image at full column width; its height follows the image. */
@@ -30,7 +30,8 @@ main h1 { font-size: clamp(40px, 4.4vw, 64px); padding: clamp(24px, 3vw, 40px) 4
 .cell:hover .tag, .cell:focus-visible .tag { opacity: 1; transform: none; }
 .cell:hover { color: inherit; }
 .cell:focus-visible { outline-offset: 2px; }
-@media (hover: none) { .cell .tag { opacity: 1; transform: none; } }
+/* Touch screens: no hover, so keep the picture clear; tapping opens it with its title. */
+@media (hover: none) { .cell .tag { display: none; } .cell .go { width: 30px; height: 30px; right: 8px; bottom: 8px; font-size: 14px; } }
 
 /* Larger view */
 .viewer { width: min(1200px, 94vw); max-height: 92dvh; padding: 0; border: 0; border-radius: 10px; background: #fff; box-shadow: 0 30px 90px rgb(0 0 0 / .35); }

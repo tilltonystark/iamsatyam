@@ -36,6 +36,8 @@
   --selection: #dfe6f3;
   /* Ink drawings (character, diagrams) are black on transparent; in dark mode they flip to light ink. */
   --art-filter: invert(0);
+  /* The character keeps its true colours; in dark mode it gets a light die-cut edge, like a sticker. */
+  --figure-filter: drop-shadow(0 0 0 transparent);
   --photo-filter: grayscale(1) contrast(1.08) brightness(1.05);
   --photo-blend: multiply;
   color-scheme: light;
@@ -64,6 +66,7 @@
   --selection: #2c3b57;
   --shadow-soft: 0 24px 60px -32px rgb(0 0 0 / .8), 0 1px 3px rgb(0 0 0 / .4);
   --art-filter: invert(1) hue-rotate(180deg);
+  --figure-filter: drop-shadow(1.5px 0 0 #e6e6e6) drop-shadow(-1.5px 0 0 #e6e6e6) drop-shadow(0 1.5px 0 #e6e6e6) drop-shadow(0 -1.5px 0 #e6e6e6) drop-shadow(0 12px 18px rgb(0 0 0 / .55));
   --photo-filter: grayscale(1) contrast(1.05) brightness(.78);
   --photo-blend: normal;
   color-scheme: dark;
@@ -83,6 +86,7 @@ a:hover { color: var(--link); }
 :focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 3px; }
 ::selection { background: var(--selection); }
 .art { filter: var(--art-filter); }
+.figure-art { filter: var(--figure-filter); }
 
 .skip { position: fixed; top: -5rem; left: 1rem; z-index: 50; padding: 8px 12px; background: var(--bg); border-radius: 4px; }
 .skip:focus { top: 8px; }
@@ -136,6 +140,9 @@ a:hover { color: var(--link); }
 .media.loaded .wire { opacity: 0; }
 .media img.art { filter: var(--art-filter) blur(14px); }
 .media.loaded img.art { filter: var(--art-filter); }
+.media img.figure-art { filter: var(--figure-filter) blur(14px); }
+.media.loaded img.figure-art { filter: var(--figure-filter); }
+.figure-art { filter: var(--figure-filter); }
 @media (prefers-reduced-motion: no-preference) {
   .media:not(.loaded) .wire { animation: wire-pulse 1.6s ease-in-out infinite; }
 }

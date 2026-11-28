@@ -69,7 +69,7 @@ Copy one block in `content/playground.json`, change the title, client, folder, f
 
 ### Light and dark theme
 
-The site follows the visitor's system setting, and the sun/moon button in the nav switches it (the choice is remembered). Colours for both themes are the tokens at the top of `assets/site.css`. Black-ink drawings (the character, workflow diagrams) flip to light ink in dark mode automatically; screenshots stay as they are. In the playground, add `"art": true` to a drawing so it flips too.
+The site follows the visitor's system setting, and the sun/moon button in the nav switches it (the choice is remembered). Colours for both themes are the tokens at the top of `assets/site.css`. In dark mode the character keeps its true colours with a light die-cut edge (like a sticker), the workflow diagrams flip to light ink, and screenshots stay as they are. In the playground, add `"art": true` to a character drawing to give it the sticker edge.
 
 ### Testimonials
 

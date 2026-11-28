@@ -27,7 +27,7 @@ function render(data) {
   const nextSlug = order[(order.indexOf(slug) + 1) % order.length];
   const next = data.projects[nextSlug];
 
-  document.title = `${p.name} — Satyam Gopal`;
+  document.title = `${p.name}: ${p.title.charAt(0).toLowerCase()}${p.title.slice(1)} · Satyam Gopal`;
   document.documentElement.style.setProperty('--tint', p.tint || '#f4f4f4');
 
   const facts = (p.facts || []).filter(f => f.value)

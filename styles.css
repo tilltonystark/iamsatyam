@@ -5,13 +5,13 @@
 html { scroll-padding-top: 76px; }
 .figure { position: fixed; top: 0; left: 0; width: 34%; height: 100dvh; display: grid; justify-items: center; align-content: start; padding-top: min(96px, 13dvh); z-index: 1; }
 .pose { position: relative; display: block; width: min(300px, 76%, 46dvh); aspect-ratio: 2 / 3; padding: 0; border: 0; background: none; cursor: pointer; transform-origin: 50% 100%; transition: transform .45s var(--ease); }
-.pose .layer, .pose .eyes { filter: var(--art-filter); }
+.pose .layer { filter: var(--figure-filter); }
 .pose .layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; opacity: 0; }
 .pose .layer.on { opacity: 1; }
 /* Pose changes cross-fade with a touch of blur. Duration and blur are set per change by character.js:
    quick for small changes within the same stance, slower when the stance changes. */
 .pose .layer { transition: opacity var(--fade, 180ms) var(--ease), filter var(--fade, 180ms) var(--ease); }
-.pose .layer:not(.on) { filter: var(--art-filter) blur(var(--blur, 2px)); }
+.pose .layer:not(.on) { filter: var(--figure-filter) blur(var(--blur, 2px)); }
 .pose:focus-visible { outline-offset: 8px; border-radius: 12px; }
 
 /* Eyes drawn over the standing illustration: they look at the visitor, and toward the page while scrolling. */

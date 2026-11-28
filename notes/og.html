@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- Renders the 1200×630 share images. Open with ?p=home or ?p=<project slug>, then screenshot at 1200×630. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #fff; }
+  .og { position: relative; width: 1200px; height: 630px; display: grid; grid-template-columns: 1fr 470px; }
+  .words { padding: 64px 0 56px 72px; display: flex; flex-direction: column; }
+  .kicker { font: 500 20px/1.3 var(--text); letter-spacing: .08em; text-transform: uppercase; color: #6b6b6b; }
+  h1 { margin: 26px 0 0; font: 400 76px/1.02 var(--display); font-variation-settings: "SOFT" 50, "WONK" 1; letter-spacing: -.035em; color: #1f1f1d; text-wrap: balance; }
+  .lede { margin-top: 22px; font: 400 26px/1.4 var(--text); color: #555; max-width: 30ch; }
+  .foot { margin-top: auto; display: flex; align-items: center; gap: 14px; font: 500 22px/1 var(--text); color: #1f1f1d; }
+  .foot img { width: 44px; height: 44px; border-radius: 50%; }
+  .art { position: relative; }
+  .art .figure { position: absolute; right: 70px; bottom: -6px; height: 600px; }
+  .art .panel { position: absolute; inset: 48px 48px 48px 0; border-radius: 22px; display: grid; place-items: end center; overflow: hidden; }
+  .art .panel img.screen { border-radius: 26px; border: 8px solid #151515; box-shadow: 0 30px 60px -20px rgb(0 0 0 / .45); margin-bottom: -40px; }
+  .art .panel img.screen.phone { width: 250px; }
+  .art .panel:has(.wide) { place-items: center; }
+  .art .panel img.screen.wide { width: 380px; border-radius: 10px; border: 1px solid rgb(0 0 0 / .08); margin: 0; box-shadow: 0 24px 50px -20px rgb(0 0 0 / .35); }
+</style>
+</head>
+<body>
+<div class="og" id="og"></div>
+<script type="module">
+const slug = new URLSearchParams(location.search).get('p') || 'home';
+const og = document.getElementById('og');
+const foot = `<div class="foot"><img src="../assets/icons/icon-512.png" alt="">iamsatyam.com</div>`;
+if (slug === 'home') {
+  og.innerHTML = `<div class="words">
+      <p class="kicker">Product designer</p>
+      <h1>Hi, I’m Satyam.</h1>
+      <p class="lede">I find the part of a product that makes people pause, and design my way through it.</p>
+      ${foot}
+    </div>
+    <div class="art"><img class="figure" src="../assets/character/wave.png" alt=""></div>`;
+} else {
+  const data = await fetch('../content/projects.json').then(r => r.json());
+  const p = data.projects[slug];
+  const hero = p.hero[0];
+  const isPhone = hero.frame === 'phone';
+  // For phones show the middle hero screen; for desktop work show the first.
+  const pick = isPhone ? (p.hero[1] || hero) : hero;
+  og.innerHTML = `<div class="words">
+      <p class="kicker">Case study · ${p.name}</p>
+      <h1>${p.title}</h1>
+      ${foot}
+    </div>
+    <div class="art"><div class="panel" style="background:${p.tint}"><img class="screen ${isPhone ? 'phone' : 'wide'}" src="../assets/work/${slug}/${pick.file}" alt=""></div></div>`;
+}
+</script>
+</body>
+</html>

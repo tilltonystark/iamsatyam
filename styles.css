@@ -211,3 +211,63 @@ blockquote { padding: 23px 22px; text-transform: uppercase; }
   .workflow-panel { min-height: 250px; }
   .workflow-panel p { top: 22%; }
 }
+
+.workflow-loop { display: block; width: 100%; height: auto; margin: 12px auto 0; }
+.cover, .hero-shot, .gallery { --paper: #ede8f4; }
+.zorro { --paper: #dce9e5; }
+.greptile { --paper: #d2decf; }
+.vertera { --paper: #e4e2f1; }
+.workers { --paper: #dadcdf; }
+.cover {
+  width: 100%; aspect-ratio: 535/227; display: grid; place-items: center;
+  padding: 0; margin-top: 10px; border: 0; overflow: hidden;
+  background: var(--paper); cursor: zoom-in; position: relative;
+}
+.cover img {
+  position: absolute; width: 81%; top: 14%; height: auto;
+  border: 3px solid #292929; border-radius: 7px;
+  box-shadow: 0 10px 22px #0002;
+  transform: rotate(-2deg); transition: transform 180ms cubic-bezier(.32,.72,0,1);
+}
+.cover.jumbo img, .cover.vertera img { width: 32%; top: 9%; border-radius: 14px; transform: rotate(-7deg); }
+@media (hover:hover) { .cover:hover img { transform: translateY(-3px) rotate(0); } }
+dialog {
+  width: min(920px, 92vw); max-width: none; max-height: 90dvh; margin: auto;
+  padding: 0; border: 0; border-radius: 9px; color: #222; background: white;
+  overflow: auto; overscroll-behavior: contain; box-shadow: 0 20px 80px #0004;
+}
+dialog::backdrop { background: rgb(0 0 0 / 79%); }
+body:has(dialog[open]), body:has(dialog[open]) main { overflow: hidden; }
+.case-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: white; position: sticky; top: 0; z-index: 1; padding: 8px 16px;
+  border-bottom: 1px solid #eee;
+}
+.dismiss { width: 40px; height: 40px; border: 0; border-radius: 50%; background: #f5f5f3; cursor: pointer; font: 24px/1 Arial; }
+.case-body { padding: clamp(18px,4vw,48px); }
+.case-body h2 { font-size: clamp(26px,4vw,48px); line-height: 1.03; text-transform: none; letter-spacing: -.055em; max-width: 19ch; }
+.case-body h3 { margin: 30px 0 10px; font-size: 15px; font-weight: 600; text-transform: none; }
+.case-body p { font-size: 15px; line-height: 1.55; max-width: 66ch; margin-bottom: 12px; }
+.case-intro { display: grid; grid-template-columns: 1.7fr 1fr; gap: 6%; }
+.case-intro dl { margin: 0; display: block; max-width: none; font-size: 13px; }
+.case-intro dt { font-size: 10px; color: #666; }
+.case-intro dd { margin-bottom: 10px; }
+.hero-shot, .gallery figure { background: var(--paper); padding: clamp(16px,3vw,36px); }
+.hero-shot { margin: 22px 0; text-align: center; }
+.hero-shot img, .gallery img { display: block; max-width: 100%; height: auto; margin: auto; box-shadow: 0 6px 18px #0002; }
+.hero-shot img { max-height: 62dvh; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(220px,100%),1fr)); gap: 10px; margin: 24px 0; }
+.gallery img { max-height: 60dvh; }
+.gallery figcaption { margin-top: 14px; font-size: 12px; text-transform: none; }
+@media(max-width: 600px) { .case-intro { display: block; } dialog { width: 94vw; } }
+@media(prefers-reduced-motion: no-preference) {
+  html, main { scroll-behavior: smooth; }
+  dialog[open] { animation: case-in 220ms cubic-bezier(.32,.72,0,1); }
+  dialog[open]::backdrop { animation: shade-in 220ms ease-out; }
+  dialog.closing { animation: case-out 150ms ease-out forwards; }
+  dialog.closing::backdrop { animation: shade-in 150ms reverse forwards; }
+}
+@keyframes case-in { from { opacity: 0; transform: translateY(7px) scale(.99); filter: blur(2px); } }
+@keyframes case-out { to { opacity: 0; transform: translateY(3px); filter: blur(2px); } }
+@keyframes shade-in { from { opacity: 0; } }
+@media(prefers-reduced-motion: reduce) { .cover img { transition: none; } .cover:hover img { transform: none; } }

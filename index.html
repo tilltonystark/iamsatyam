@@ -17,7 +17,7 @@
         <a href="#home">Home</a>
         <a href="#work">Work</a>
         <a href="#about">More about me</a>
-        <span aria-disabled="true">Playground</span>
+        <a href="playground.html">Playground</a>
         <a href="#contact">Contacts</a>
       </nav>
       <div class="column">
@@ -33,73 +33,36 @@
             <dt>Email</dt>
             <dd><a href="mailto:satyam@vizually.design">satyam@vizually.design</a></dd>
             <dt>LinkedIn</dt>
-            <dd>Satyam Gopal</dd>
+            <dd><a href="https://www.linkedin.com/in/satyamvizually/">Satyam Gopal</a></dd>
           </dl>
         </section>
         <section id="work">
           <h2>Work</h2>
-          <article>
-            <header>
-              <h3>Jumbo</h3>
-              <span>Game design &amp; design leadership</span>
-            </header>
-            <figure class="image-pair jumbo">
-              <div class="image-slot"><img src="assets/work/jumbo.png" alt="Jumbo product interface" loading="lazy"></div>
-              <div class="image-slot"><img src="assets/work/wallet.png" alt="Jumbo wallet withdrawal choices" loading="lazy"></div>
-            </figure>
-            <details>
-              <summary>Project notes</summary>
-              <p>Games and a wallet for players across India.</p>
-              <p>I designed Aviator from scratch and owned flows for Ludo, cricket and Plinko. Players often missed games in the Games tab, so I explored homepage layouts that put four or five priority games within reach. For Aviator, I focused on large controls and fewer taps during fast rounds.</p>
-              <p>I managed two designers on the wallet. Together we worked through how to explain cash, tokens and shopping credits, and how to show what happens while a withdrawal is under review.</p>
-            </details>
+          <article><header><h3>Jumbo</h3><span>Game design and design leadership</span></header>
+            <button class="cover jumbo" data-project="jumbo" aria-haspopup="dialog" aria-label="Read the Jumbo case study"><img src="assets/work/jumbo.png" loading="lazy" alt="Aviator · live round"></button>
           </article>
-          <article>
-            <header>
-              <h3>Zorro</h3>
-              <span>Product redesign</span>
-            </header>
-            <figure class="image-pair zorro">
-              <div class="image-slot"><img src="assets/work/zorro.png" alt="Zorro product interface" loading="lazy"></div>
-              <div class="image-slot" aria-hidden="true"></div>
-            </figure>
-            <details>
-              <summary>Project notes</summary>
-              <p>A clearer view of what an AI test is doing.</p>
-              <p>I mapped the fields across tests, bugs and reports, then sketched which information belonged in a table and which needed a detail view. With an investor meeting approaching, I used Claude to explore high-fidelity versions of the selected layouts.</p>
-              <p>One revised screen handles a run blocked at sign-in. It says why the agent paused and gives the tester a choice to continue with credentials, skip the step or stop the run.</p>
-            </details>
+          <article><header><h3>Zorro</h3><span>Product redesign</span></header>
+            <button class="cover zorro" data-project="zorro" aria-haspopup="dialog" aria-label="Read the Zorro case study"><img src="assets/work/zorro.png" loading="lazy" alt="A run paused at sign-in"></button>
           </article>
-          <article>
-            <h3>Slides</h3>
-            <figure class="image-pair future">
-              <div class="image-slot" aria-hidden="true"></div>
-              <div class="image-slot" aria-hidden="true"></div>
-            </figure>
+          <article><header><h3>Greptile</h3><span>Design systems and product UI</span></header>
+            <button class="cover greptile" data-project="greptile" aria-haspopup="dialog" aria-label="Read the Greptile case study"><img src="assets/work/greptile.png" loading="lazy" alt="Team code review analytics"></button>
           </article>
-          <article>
-            <h3>Buildojo</h3>
-            <figure class="image-pair future">
-              <div class="image-slot" aria-hidden="true"></div>
-              <div class="image-slot" aria-hidden="true"></div>
-            </figure>
+          <article><header><h3>Vertera Health</h3><span>Patient learning experience</span></header>
+            <button class="cover vertera" data-project="vertera" aria-haspopup="dialog" aria-label="Read the Vertera Health case study"><img src="assets/work/vertera.png" loading="lazy" alt="Daily plan and learning"></button>
+          </article>
+          <article><header><h3>Workers</h3><span>Zero-to-one product design</span></header>
+            <button class="cover workers" data-project="workers" aria-haspopup="dialog" aria-label="Read the Workers case study"><img src="assets/work/workers.png" loading="lazy" alt="Delegating an issue to a worker"></button>
           </article>
         </section>
         <section id="about">
           <h2>My design workflow as a solo designer</h2>
           <div class="workflow">
             <h3>Fresh problem</h3>
-            <div class="workflow-panel">
-              <div class="workflow-images" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <p>Spend time with the brief → Gather context → Frame the problem → Sketch solutions on paper → Review competitors in FigJam → Explore alternatives → Build and test → Apply the design system.</p>
-            </div>
+            <img class="workflow-loop" src="assets/workflow-0.svg" alt="Spend time with the brief → Gather context → Frame the problem → Sketch solutions on paper → Review competitors in FigJam → Explore alternatives → Build and test → Apply the design system.">
           </div>
           <div class="workflow">
             <h3>Rapid prototyping</h3>
-            <div class="workflow-panel">
-              <div class="workflow-images" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <p>Understand the problem → Sketch a solution → Build a rough prototype with Claude → Try it and iterate → Choose a direction → Apply the design system or brand kit.</p>
-            </div>
+            <img class="workflow-loop" src="assets/workflow-1.svg" alt="Understand the problem → Sketch a solution → Build a rough prototype with Claude → Try it and iterate → Choose a direction → Apply the design system or brand kit.">
           </div>
         </section>
         <section>
@@ -139,56 +102,64 @@
             </div>
           </figure>
         </section>
-        <section class="more-work">
-          <h2>More work</h2>
-          <article>
-            <header>
-              <h3>Greptile</h3>
-              <span>Design systems</span>
-            </header>
-            <p>A new visual identity for an AI code review tool.</p>
-            <figure class="greptile">
-              <img src="assets/work/greptile.png" alt="Greptile product interface" loading="lazy">
-            </figure>
-            <details>
-              <summary>Project notes</summary>
-              <p>At Pixelup, I helped bring Greptile’s new brand into its existing product. I explored how teams could scan review activity, read individual conversations and understand billing and paid seats. I worked on the design system alongside these dashboard layouts.</p>
-            </details>
-          </article>
-          <article>
-            <header>
-              <h3>Vertera Health</h3>
-              <span>Patient experience</span>
-            </header>
-            <p>Guided learning before and after spine surgery.</p>
-            <figure class="vertera">
-              <img src="assets/work/vertera.png" alt="Vertera Health product interface" loading="lazy">
-            </figure>
-            <details>
-              <summary>Project notes</summary>
-              <p>I worked with a small team on Vertera’s patient app. My focus was course layouts. I explored how much information someone needed before starting a lesson or exercise, and how to keep the next step easy to find. I also contributed to pricing and onboarding iterations.</p>
-            </details>
-          </article>
-          <article>
-            <header>
-              <h3>Workers</h3>
-              <span>Product design from scratch</span>
-            </header>
-            <p>A developer workspace for delegating issues to AI.</p>
-            <figure class="workers">
-              <img src="assets/work/workers.png" alt="Workers product interface" loading="lazy">
-            </figure>
-            <details>
-              <summary>Project notes</summary>
-              <p>Workers began as a playground. I mapped its workflow in FigJam, studied tools like Manus and proposed an information architecture to the founder. Once we agreed on the direction, I designed the MVP around launching a worker from an issue, following its progress and inspecting the spec or code diff.</p>
-            </details>
-          </article>
-        </section>
         <footer id="contact">
           <h2>Get in touch</h2>
           <a href="mailto:satyam@vizually.design">satyam@vizually.design</a>
         </footer>
       </div>
     </main>
+    <dialog id="case-jumbo" aria-labelledby="title-jumbo">
+      <div class="case-bar"><span>Jumbo</span><button class="dismiss" aria-label="Close case study" autofocus>×</button></div>
+      <div class="case-body"><h2 id="title-jumbo">Games, winnings and the wait to get paid</h2>
+        <div class="case-intro"><p>At the time I worked on Jumbo, one top-up gave a player game tokens to play with and shopping credits to spend in the store. Winning introduced a third balance, cash. A player could understand the game and still wonder what their balance was worth.</p><dl><dt>Audience</dt><dd>Mobile players across India</dd><dt>My role</dt><dd>Lead designer · team of two designers</dd></dl></div>
+        <figure class="hero-shot jumbo"><img src="assets/work/jumbo.png" alt="Aviator · live round" loading="lazy"></figure>
+        <h3>Design decisions</h3><p>Players rarely opened the Games tab. I explored homepage layouts that surfaced more of the catalog, giving four or five games priority. I owned flows for Ludo and cricket, including women’s cricket, and designed Aviator and Plinko from scratch. For Aviator I worked through the bottom controls round by round, keeping frequent actions large and within a few taps.</p><p>I reviewed the wallet work with Siddharth and Rankesh. Jumbo wanted players to consider converting winnings back into tokens. We showed that incentive where players chose between a bank transfer, game tokens and shopping credits, alongside the consequence of each choice.</p>
+        <div class="gallery jumbo"><figure><img src="assets/work/wallet.png" alt="Three ways to use winnings" loading="lazy"><figcaption>Three ways to use winnings</figcaption></figure>
+<figure><img src="assets/work/transfer.png" alt="Following a withdrawal" loading="lazy"><figcaption>Following a withdrawal</figcaption></figure></div>
+        <h3>What we delivered</h3><p>Pending verification and a pending payout needed different messages. Someone still linking a UPI account had a task to complete. Someone whose withdrawal was under review had already done their part. We designed the wallet and transaction states around that distinction. Aviator went live during my time on the team.</p>
+      </div>
+    </dialog>
+    <dialog id="case-zorro" aria-labelledby="title-zorro">
+      <div class="case-bar"><span>Zorro</span><button class="dismiss" aria-label="Close case study" autofocus>×</button></div>
+      <div class="case-body"><h2 id="title-zorro">When an automated test needs a person</h2>
+        <div class="case-intro"><p>Zorro lets a team describe a test or ask an agent to explore an app for bugs. Ahead of an investor meeting, the founder wanted the product to feel consistent. A run could take several minutes, so what the interface said during that time mattered as much as the final report.</p><dl><dt>Audience</dt><dd>Teams testing web and mobile products</dd><dt>My role</dt><dd>Product design · workflow and visual redesign</dd></dl></div>
+        <figure class="hero-shot zorro"><img src="assets/work/zorro.png" alt="A run paused at sign-in" loading="lazy"></figure>
+        <h3>Design decisions</h3><p>I wrote down the fields across bugs, reports and tests, then sketched which ones helped someone choose a row and which belonged in the detail view. I used Claude to turn selected sketches into high-fidelity alternatives and refined the layouts around real run states.</p><p>A sign-in screen exposed a contradiction. The activity log asked for credentials while the main panel still implied the agent was scanning. The revised view explains the pause beside the browser preview and lets the tester continue, skip the step or stop the run.</p>
+        <div class="gallery zorro"><figure><img src="assets/work/editor.png" alt="Reviewing the test steps" loading="lazy"><figcaption>Reviewing the test steps</figcaption></figure>
+<figure><img src="assets/work/report.png" alt="Preparing the bug report" loading="lazy"><figcaption>Preparing the bug report</figcaption></figure></div>
+        <h3>What we delivered</h3><p>The resulting designs cover drafting and reviewing test steps, running a bug bash, waiting for input and assembling the report. Each state tells the tester whether the agent can proceed on its own.</p>
+      </div>
+    </dialog>
+    <dialog id="case-greptile" aria-labelledby="title-greptile">
+      <div class="case-bar"><span>Greptile</span><button class="dismiss" aria-label="Close case study" autofocus>×</button></div>
+      <div class="case-body"><h2 id="title-greptile">Bringing a new identity into code review</h2>
+        <div class="case-intro"><p>Greptile reviews pull requests. At Pixelup, our team worked on its new brand, and my part was translating that identity into a product engineers already knew. I worked on dashboard layouts, pricing, billing and the design system.</p><dl><dt>Audience</dt><dd>Engineering teams and workspace owners</dd><dt>My role</dt><dd>Product designer at Pixelup</dd></dl></div>
+        <figure class="hero-shot greptile"><img src="assets/work/greptile.png" alt="Team code review analytics" loading="lazy"></figure>
+        <h3>Design decisions</h3><p>The analytics view needed to tell two related stories. A team might start with a trend in merge time or comments per pull request, then want to see the review conversations behind it. I explored layouts that gave the numbers a consistent hierarchy and kept examples of activity close by.</p><p>For billing, I focused on the connection between feature usage, active developers and paid seats. A workspace owner looking at a count needed to understand which activity counted toward the bill.</p>
+        <div class="gallery greptile"><figure><img src="assets/work/billing.png" alt="Code review usage and paid seats" loading="lazy"><figcaption>Code review usage and paid seats</figcaption></figure></div>
+        <h3>What we delivered</h3><p>The dashboard and usage views gave us two different places to apply the visual system, one dense with charts and the other organized around an account owner’s purchasing decisions.</p>
+      </div>
+    </dialog>
+    <dialog id="case-vertera" aria-labelledby="title-vertera">
+      <div class="case-bar"><span>Vertera Health</span><button class="dismiss" aria-label="Close case study" autofocus>×</button></div>
+      <div class="case-body"><h2 id="title-vertera">Finding the next lesson in spine recovery</h2>
+        <div class="case-intro"><p>Vertera brings exercises, workouts and lessons into a patient’s recovery plan. I worked with a small team, focusing on how courses were presented before and after surgery.</p><dl><dt>Audience</dt><dd>People preparing for or recovering from spine surgery</dd><dt>My role</dt><dd>Product designer · courses, onboarding and pricing</dd></dl></div>
+        <figure class="hero-shot vertera"><img src="assets/work/vertera.png" alt="Daily plan and learning" loading="lazy"></figure>
+        <h3>Design decisions</h3><p>I explored course layouts around a practical question. Before starting a lesson, how much does someone need to know to decide whether it applies to them today? Showing every detail upfront made the course harder to scan. Hiding too much made the next step unclear.</p><p>The home view gives the course work context. Scheduled activity and educational material have different places, so someone looking for a lesson can distinguish it from a workout. I also contributed iterations for pricing and onboarding.</p>
+        <div class="gallery vertera"><figure><img src="assets/work/journal.png" alt="Daily symptom check-in" loading="lazy"><figcaption>Daily symptom check-in</figcaption></figure></div>
+        <h3>What we delivered</h3><p>My deliverable was a set of course layout iterations for the team. The home and daily check-in screens shown here illustrate how learning fits within the wider patient experience.</p>
+      </div>
+    </dialog>
+    <dialog id="case-workers" aria-labelledby="title-workers">
+      <div class="case-bar"><span>Workers</span><button class="dismiss" aria-label="Close case study" autofocus>×</button></div>
+      <div class="case-body"><h2 id="title-workers">Turning a coding playground into a workspace</h2>
+        <div class="case-intro"><p>Workers began as a technical playground. The founder wanted an MVP that developers could use to hand off an issue and inspect what the agent did. My first task was understanding that engineering workflow well enough to organize it.</p><dl><dt>Audience</dt><dd>Developers delegating engineering issues</dd><dt>My role</dt><dd>Sole product designer · MVP</dd></dl></div>
+        <figure class="hero-shot workers"><img src="assets/work/workers.png" alt="Delegating an issue to a worker" loading="lazy"></figure>
+        <h3>Design decisions</h3><p>I mapped the process in FigJam and studied how tools like Manus presented long-running work. I broke the interface into stages a developer could recognize. First attach an existing issue, then follow the investigation, then inspect the specification and changes.</p><p>Using an issue link as the starting point kept the brief tied to work the developer had already described. The activity view could then expose evidence as it became available, including investigation notes, code differences and testing progress.</p>
+        <div class="gallery workers"><figure><img src="assets/work/investigation.png" alt="Inspecting the investigation" loading="lazy"><figcaption>Inspecting the investigation</figcaption></figure></div>
+        <h3>What we delivered</h3><p>The founder approved the information architecture. I took it through wireframes and layout iterations to the final MVP designs in Figma.</p>
+      </div>
+    </dialog>
+    <script src="portfolio.js" defer></script>
   </body>
 </html>

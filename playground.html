@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Character playground · Satyam Gopal</title>
+  <style>
+    body { margin: 0; min-height: 100dvh; display: grid; place-items: center; font: 14px system-ui; }
+    a { position: absolute; top: 24px; left: 24px; color: inherit; }
+    section { text-align: center; } #portrait { width: min(72vw,320px); margin: auto; }
+  </style>
+</head>
+<body>
+  <a href="index.html">Back to portfolio</a>
+  <section><div id="portrait" role="img" aria-label="Illustration of Satyam"></div><p>Move your pointer to guide my eyes.</p></section>
+  <script type="module">
+    import {mountGaze} from './character-motion/src/gaze.js';
+    mountGaze(document.querySelector('#portrait'));
+  </script>
+</body>
+</html>

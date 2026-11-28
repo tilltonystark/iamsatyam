@@ -41,4 +41,10 @@ Open index.html directly or serve the repository root with `python3 -m http.serv
 
 The first pass uses the reference still and six archived Figma screens across five project summaries. The summaries expand inline. The final character interaction, secondary pages, testimonial attribution, and additional content for Slides and Buildojo are pending. Before a public launch, review the screenshot selections and confirm any added dates or outcomes.
 
-The second pass uses local Inter, the reference’s 535 px desktop reading column, and separate image tiles for each rectangle. The four main rows follow the frame’s order. Jumbo and Zorro use available screenshots. Slots for the second Zorro image, Slides, Buildojo, workflow, interests, and teaching are reserved for final assets. Greptile, Vertera Health, and Workers are grouped under More work. The testimonial uses the single quote attributed in the frame. The second card is reserved.
+## Current interaction design
+
+Work contains five documented clients. Each cover opens its native dialog in index.html. Keep client context, audience, ownership, design decisions and supported outcomes beside the corresponding screen exports in assets/work. portfolio.js handles dismissal and return focus. CSS supplies the dark backdrop, short transitions and reduced-motion alternative.
+
+The workflow diagrams in assets/workflow-0.svg and assets/workflow-1.svg trace the full sequences clockwise from twelve o’clock. Update the accessible descriptions in index.html when changing the steps. The Playground link opens a standalone pointer-following character demo using the repository’s gaze component. The homepage portrait remains a still pending the final interaction brief.
+
+Slides and Buildojo have been removed from the homepage at Satyam’s request. Confirmed product impact metrics can be added when records are available. Hobby and teaching photography are pending.

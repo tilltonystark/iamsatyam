@@ -1,29 +1,55 @@
 # Animation rules for this site
 
-Satyam's feedback on motion, collected while building the character and page effects. Follow these for any new animation.
+Satyam's feedback on motion, turned into hard rules. Any new animation must follow them. If a change would break a rule, ask first.
 
-## Changing between drawings
-- **Never let the figure dim mid-change.** Fade the new drawing in on top while the old one stays fully visible underneath, then hide the old one. A plain cross-fade, where both are half see-through halfway, reads as blinking. (`show()` in `assets/character.js`.)
-- **Match the duration to the size of the change.** Small changes in the same stance (standing ↔ glance, standing ↔ wave) take about 0.18 s with only a hint of blur. Big changes (standing ↔ sitting at the laptop) take about 0.45 s. Frame swaps inside a loop take about 0.06 s with no blur.
-- **No double features.** Overlays such as the drawn-on eyes hide as soon as a change starts and come back only once the drawing they belong to has fully arrived.
+## 1. One pose per section
+| Section | Pose | Line |
+|---|---|---|
+| Arrival (top of the page) | wave, 3 times, then standing | "Howdy!" |
+| Work | working (typing loop) | "Here's what I've been working on." |
+| About | standing | "This is how I usually work." |
+| Side quests | reading | "Off the clock." |
+| Kind words | standing | (none) |
+| Teaching | standing | "I love this part." |
+| Contact | wave, then standing | "Say hi!" |
 
-## Loops and gestures
-- **Gestures play a few times, then settle.** The wave plays three times and then he stands normally. Nothing loops forever unless it's an activity (typing).
-- **Loops are subtle.** Only small parts move between frames, such as the hands or a breath. Leave out any frame that redraws the face or head, because it twitches. (`working-4.png` is excluded for this reason.)
-- **Breathing moves the whole figure, never each frame on its own,** so overlapping frames don't drift apart.
+- **The pose changes only when the section changes,** and only after scrolling has settled (260 ms without movement). Nothing changes mid-scroll.
+- **The active section is the one filling most of the screen.** A new section only takes over when it fills at least 15% more of the screen than the current one and at least 30% overall. This stops him flipping between poses at section edges.
+- **In the gaps between sections, he keeps his current pose.**
 
-## Reacting to the visitor
-- **He faces the visitor by default.** He looks toward the page only while the page is scrolling, then faces the visitor again.
-- **Hover reactions happen once,** not on every card. Leaning in toward the work happens once, then he straightens up. Moving from card to card doesn't repeat it, so there's no back-and-forth.
-- **Only real pointer movement counts as hovering.** Cards sliding under a still mouse while scrolling don't.
-- **No stream of chatter.** Section lines wait until scrolling settles. A fast scroll gets one "Whoa, in a hurry?", at most once every 8 seconds. Nav link jumps don't count as fast scrolling.
-- **The speech bubble is small and light grey.** No black bubbles.
+## 2. Changing drawings
+| Change | How | Duration |
+|---|---|---|
+| Frame inside a loop (typing, waving) | new drawing fades in on top | 60 ms, no blur |
+| Same stance (standing ↔ wave, glance or reading) | new drawing fades in on top; the old one stays fully visible underneath | 180 ms, 2 px blur |
+| Stance change (standing ↔ sitting) | the old drawing fades out first, then the new one fades in. **Never overlap.** | 170 ms out + 260 ms in, 4 px blur |
 
-## Page motion
-- **Reveal:** text and images arrive from a soft blur as they scroll into view, staggered slightly.
+- **Never show two figures at once.** Overlapping is allowed only when both drawings share the same outline.
+- **Never let the figure dim mid-change.** For same-outline changes, one layer stays at full opacity the whole time.
+- **Each change waits for the previous one to finish.** A newer request replaces older queued ones.
+
+## 3. Movement on top of a pose
+- **Breathing:** moves the whole figure, very subtly (7.4 s cycle). Used for standing, reading and working.
+- **Lean toward the work:** standing poses only, once per visit to the work list, then he settles. **Never tilt, lean or wiggle the seated (working) pose.** He's at a desk.
+- **Eyes:** standing only. He faces the visitor; a short pupil shift acknowledges manual scrolling, at most every 4.5 s.
+- **Gestures settle:** the wave plays three times and then stops. Only activities (typing) loop.
+- **No gestures at the desk:** clicking him while he works only shows the bubble. He never stands up and sits back down just to wave.
+- **Loops are subtle:** only hands or a breath change between frames. Any frame that redraws the face or head is left out.
+
+## 4. Speech bubble
+- **It shows in every pose,** standing, waving, reading or working, in the same small light-grey style.
+- **One line per section change,** shown for 3 s.
+- **Skimming:** scrolling fast or jumping past at least one whole section gets one gentle "No rush, take your time.", anywhere on the page and at most every 8 s. The new section's own line follows it, so nothing is lost. Nav link jumps don't count.
+- **Never mocking or rude.** Keep lines warm and short.
+
+## 5. Page motion
+- **Reveal:** text and images arrive from a soft blur as they scroll into view, slightly staggered.
 - **Image loading:** each image shows a wireframe sketch first, then the real image resolves over it.
-- **Walker:** on case studies, the walker runs from 16 px from the left edge of the screen to 16 px from the right, in step with the scroll, and sits down exactly when the case study ends.
-- **Reduced motion:** honour it everywhere. Show still poses and no blur.
+- **Walker:** on case studies it runs from 16 px from the left edge of the screen to 16 px from the right, in step with the scroll, and sits down exactly when the case study ends.
+- **Reduced motion:** honour it everywhere. Show still poses, with no blur and no loops.
 
-## Checking motion
-Measure in a real browser (Chrome), not only in screenshots. Sample every animation frame, and confirm the top drawing never drops below full opacity during a swap.
+## 6. Checking motion
+Measure in Chrome. Sample every animation frame during each change and confirm:
+- at most one figure is visible during a stance change
+- one layer stays fully opaque during same-outline changes
+- the seated pose never rotates

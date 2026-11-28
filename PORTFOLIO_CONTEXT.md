@@ -107,9 +107,10 @@ Design system
 - Favicon and touch icon come from the character's face (`assets/icons/`). Share images are 1200×630 for the homepage and each case study (`assets/og/`, generated from `notes/og.html`). Every page has a title, description and Open Graph tags.
 
 Character (homepage)
-- Poses and lines: `content/character.json`. Drawings: `assets/character/` (wave, wave-2, glance, reading, working-1 to working-4). Generation prompt: `notes/character-prompt.md`.
-- Behaviour: waves three times with "Howdy!" on arrival, then settles. He faces the visitor; while scrolling he turns to the page (glance). Each section gets one line once scrolling settles. The work section shows him typing at the laptop (frames 1 → 2 → 1 → 3, with breathing). Side quests show him reading. Hovering the projects makes him lean in once. A fast scroll gets "Whoa, in a hurry?". Clicking him says hi.
-- working-4.png is excluded from the loop because it redraws the face and head and twitches.
+- `home.js` mounts `assets/character.js`. `content/character.json` defines the poses, timing and lines, and `assets/character/` holds the drawings. The generation prompt is in `notes/character-prompt.md`.
+- He waves three times with "Howdy!" on arrival. A small pupil movement acknowledges manual scrolling while he is standing. Once scrolling settles, the section in the middle of the viewport determines the pose and line. Work plays the revised typing frames 1 → 2 → 1 → 3 → 1 → 4. Side quests show him reading. A fast scroll gets "Whoa, in a hurry?". Clicking him waves, then returns him to the section pose.
+- Drawings decode on demand. A pose blend keeps its outgoing drawing at full opacity until the incoming drawing is ready to take over. Typing waits for the stance change before advancing. Reduced motion uses the first drawing of each activity and an idle pose for the wave.
+- The standalone `character.html` demo uses `character-motion/src/gaze.js`. The `room-playground/` project next to this repository is a separate prototype.
 - Animation rules from Satyam's feedback: `notes/animation.md`.
 
 Walker (case studies): goes from 16 px from the screen's left edge to 16 px from its right edge in step with the scroll, sits down as the case study ends, and is smaller on phones.
@@ -120,3 +121,10 @@ Still open
 - Timelines for each project.
 - Real photos for the side quests and teaching rows (currently greyscale editorial placeholders).
 - Optional: re-export the 1× screens (Zorro, Vertera, Greptile, Workers) at 2× for sharper Retina images.
+
+Character fixes (28 Nov 2026, evening). These build on another session's rewrite of `assets/character.js`, which moved the standing drawing to `assets/character/satyam.png`, added coffee frames (not used yet) and regenerated the working frames (all four now change only the hands, so all are in the loop).
+- Standing ↔ sitting changes no longer overlap: the old drawing fades out, then the new one fades in.
+- The seated pose never tilts. The hover lean and wiggle are standing-only, breathing has no rotation, and a click at the desk only shows the bubble.
+- The active section is the one filling most of the screen, with a 15% margin before switching, so he no longer flips at section edges.
+- The skimming line is now "No rush, take your time.". It fires anywhere a section is skipped and is followed by the section's own line.
+- Hard rules: `notes/animation.md`.

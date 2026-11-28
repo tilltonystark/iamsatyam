@@ -1,6 +1,6 @@
 # Master prompt: homepage character poses
 
-Use this with any image model that accepts a reference image (ChatGPT/GPT Image, Nano Banana, Midjourney with --cref, Ideogram). **Always attach `assets/satyam.png` as the reference.** Generate one pose per chat or request, and keep the same chat going for every frame of the same pose. This keeps the face, outfit and line weight consistent.
+Use this with any image model that accepts a reference image (ChatGPT/GPT Image, Nano Banana, Midjourney with --cref, Ideogram). **Always attach `assets/character/satyam.png` as the reference.** Generate one pose per chat or request, and keep the same chat going for every frame of the same pose. This keeps the face, outfit and line weight consistent.
 
 ---
 
@@ -81,7 +81,7 @@ POSE: Standing in the same spot and stance as the reference, feet unchanged, hol
 
 ## 3. Check before using a pose
 
-Open the new image and `assets/satyam.png` in Figma, one on top of the other at 50% opacity:
+Open the new image and `assets/character/satyam.png` in Figma, one on top of the other at 50% opacity:
 
 - [ ] Same canvas: 1024 × 1536.
 - [ ] Sneaker soles land on the same line (±10 px).

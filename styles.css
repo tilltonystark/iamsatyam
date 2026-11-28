@@ -5,24 +5,15 @@
 html { scroll-padding-top: 76px; }
 .figure { position: fixed; top: 0; left: 0; width: 34%; height: 100dvh; display: grid; justify-items: center; align-content: start; padding-top: min(96px, 13dvh); z-index: 1; }
 .pose { position: relative; display: block; width: min(300px, 76%, 46dvh); aspect-ratio: 2 / 3; padding: 0; border: 0; background: none; cursor: pointer; transform-origin: 50% 100%; transition: transform .45s var(--ease); }
-.pose .layer { filter: var(--figure-filter); }
-.pose .layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; opacity: 0; }
-.pose .layer.on { opacity: 1; }
-/* Pose changes cross-fade with a touch of blur. Duration and blur are set per change by character.js:
-   quick for small changes within the same stance, slower when the stance changes. */
-.pose .layer { transition: opacity var(--fade, 180ms) var(--ease), filter var(--fade, 180ms) var(--ease); }
-.pose .layer:not(.on) { filter: var(--figure-filter) blur(var(--blur, 2px)); }
+.drawing, .pose .layer, .pose .layer img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.drawing { transform-origin: 50% 98.6%; filter: var(--figure-filter); }
+.pose .layer img { object-fit: contain; object-position: bottom center; }
 .pose:focus-visible { outline-offset: 8px; border-radius: 12px; }
 
-/* Eyes drawn over the standing illustration: they look at the visitor, and toward the page while scrolling. */
-.eyes { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; }
-.pose.still-on .eyes { opacity: 1; transition: opacity .12s var(--ease); }
-.eyes .cover { fill: #fff; }
-.eyes .pupils { fill: #141414; transition: transform .35s var(--ease); }
-/* Looking at the page: the pupils slide right and the original drawing (already looking right) takes over. */
-.pose.look .eyes { opacity: 0; transition: opacity .25s var(--ease) .12s; }
-.pose.look .eyes .pupils { transform: translateX(8px) translateY(-1px); }
-.pose
+/* The neutral pupils stay with the standing layer as poses overlap. */
+.eyes { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.eyes .cover { fill: #fafafa; }
+.eyes .pupils { fill: #191919; }
 /* Speech bubble */
 .bubble {
   position: absolute; left: 60%; top: 2%; z-index: 2;
@@ -35,15 +26,16 @@ html { scroll-padding-top: 76px; }
 }
 .bubble.show { opacity: 1; transform: none; transition: opacity .25s var(--ease), transform .45s cubic-bezier(.34, 1.56, .64, 1); }
 @media (prefers-reduced-motion: no-preference) {
-  /* Breathing moves the whole figure, so overlapping frames never drift apart mid-swap. */
-  .pose.breathe { animation: breathe 3.6s ease-in-out infinite; }
-  /* One-off gestures come after, so they play over the breathing and then hand back to it. */
+  .eyes .pupils { transition: transform .2s var(--ease); }
+  .pose.look .eyes .pupils { transform: translate(3px, -.5px); }
+  /* Both drawings and the eyes share one movement with its origin at the feet. */
+  .pose.breathe .drawing { animation: breathe 7.4s ease-in-out infinite; }
+  .pose.paused .drawing { animation-play-state: paused; }
   .pose.wiggle { animation: wiggle .9s var(--ease); }
-  /* Lean toward the work once, then settle back. */
   .pose.nudge { animation: nudge .9s var(--ease); }
 }
-@keyframes breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.008) translateY(-1px); } }
-@keyframes nudge { 0%, 100% { transform: none; } 35% { transform: rotate(2.5deg) translateX(6px); } 60% { transform: rotate(2.5deg) translateX(6px); } }
+@keyframes breathe { 0%, 16%, 100% { transform: none; } 52% { transform: scale(1.002, 1.004); } }
+@keyframes nudge { 0%, 100% { transform: none; } 40%, 58% { transform: translateX(2px) rotate(.8deg); } }
 @keyframes wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-3deg); } 40% { transform: rotate(2.5deg); } 60% { transform: rotate(-2deg); } 80% { transform: rotate(1deg); } }
 
 main { margin-left: 34%; padding-inline: 8px clamp(24px, 4vw, 56px); outline: none; }

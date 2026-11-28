@@ -30,13 +30,22 @@
     <a class="skip" href="#home">Skip to content</a>
     <aside class="figure">
       <button class="pose" type="button" aria-label="Illustration of Satyam. Press to say hi.">
-        <img class="layer on" src="assets/satyam.png" alt="" width="1024" height="1536">
-        <img class="layer" alt="" width="1024" height="1536">
-        <svg class="eyes" viewBox="0 0 1024 1536" aria-hidden="true">
-          <ellipse class="cover" cx="478.5" cy="226.8" rx="9" ry="5.2"/>
-          <ellipse class="cover" cx="546" cy="210.6" rx="9.6" ry="5.4"/>
-          <g class="pupils"><circle cx="472.5" cy="224.4" r="6.6"/><circle cx="540" cy="208.6" r="6.6"/></g>
-        </svg>
+        <span class="drawing" aria-hidden="true">
+          <span class="layer">
+            <img src="assets/character/satyam.png" alt="" width="1024" height="1536">
+            <svg class="eyes" viewBox="0 0 1024 1536">
+              <defs>
+                <clipPath id="standing-eyes">
+                  <path d="M455 230 Q470 214 488 221 L489 235 H455 Z M524 213 Q539 198 557 205 L558 219 H524 Z"/>
+                </clipPath>
+              </defs>
+              <path class="cover" d="M470 222 Q479 217.5 487 221 L489 232 H469 Z M538 206 Q547 201.5 556 205 L558 216 H537 Z"/>
+              <g clip-path="url(#standing-eyes)">
+                <g class="pupils"><circle cx="470.5" cy="224" r="6.4"/><circle cx="539.5" cy="208" r="6.4"/></g>
+              </g>
+            </svg>
+          </span>
+        </span>
         <span class="bubble" aria-hidden="true"></span>
       </button>
     </aside>

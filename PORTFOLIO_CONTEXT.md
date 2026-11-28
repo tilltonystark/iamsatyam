@@ -48,3 +48,9 @@ Work contains five documented clients. Each cover opens its native dialog in ind
 The workflow diagrams in assets/workflow-0.svg and assets/workflow-1.svg trace the full sequences clockwise from twelve o’clock. Update the accessible descriptions in index.html when changing the steps. The Playground link opens a standalone pointer-following character demo using the repository’s gaze component. The homepage portrait remains a still pending the final interaction brief.
 
 Slides and Buildojo have been removed from the homepage at Satyam’s request. Confirmed product impact metrics can be added when records are available. Hobby and teaching photography are pending.
+
+## Image sizing and review
+
+Keep portfolio images in normal flow with a width bounded by their container and an automatic height. Give each image its intrinsic dimensions in HTML. Cover buttons grow to enclose their screenshots. The three personal illustrations and three teaching illustrations in assets/editorial are generated editorial placeholders. Replace them with approved personal assets when available. The testimonial uses the single supplied quote.
+
+Section checks passed in Chrome at 320, 390, 768, 1024 and 1440 px, including cover and dialog image containment, keyboard dismissal and focus return. Also checked backdrop dismissal, the close button and the playground return link.

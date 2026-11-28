@@ -63,6 +63,10 @@ In `content/projects.json`, edit `"order": ["jumbo", "zorro", "vertera"]`. This 
 
 Copy one block in `content/playground.json`, change the title, client, folder, file, size and tags. Cells show the plain image at full column width (no frame), so export screens the way you want them seen. For a transparent picture, add `"ratio": "4:5"` and `"bg": "#f5f4f0"` to place it on a coloured tile. New tags become filter buttons automatically. Add `"link"` to send the cell to another page; without it, clicking opens the image larger. The first item in the list shows first.
 
+### The homepage character
+
+`content/character.json` sets what he says and which pose he uses on arrival, in each section, when a project is hovered, and when he's clicked. Poses are pictures in `assets/character/` (`wave.png`, `working.png`, `glance.png`, `reading.png`). Until a pose file exists he uses the standing illustration, so nothing looks broken. For a clean swap, draw each pose on the same 1024×1536 canvas as `assets/satyam.png`, feet in the same spot, transparent or white background.
+
 ### Testimonials
 
 Edit `content/testimonials.json`. To publish a real quote, fill in `"text"` and `"by"`, and set `"placeholder": false`. Placeholders only appear on your local preview, never on the live site.

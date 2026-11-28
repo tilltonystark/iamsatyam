@@ -100,7 +100,7 @@ function render(data) {
   if (matchMedia('(min-width: 861px)').matches) {
     mountWalker({
       base: '../character-motion/assets/',
-      track: () => root.querySelector('main.wrap > .grid.hero'),
+      track: 'viewport',
       end: () => document.getElementById('looking-back') || root.querySelector('.next'),
     });
   }

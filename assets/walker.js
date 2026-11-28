@@ -32,6 +32,11 @@ export function mountWalker({ base, track, end }) {
   let x = 0, target = 0, face = 1, lastScroll = scrollY, lastMove = 0, step = 0, stepClock = 0, raf = 0, prev = 0;
 
   const bounds = () => {
+    // track: 'viewport' walks the full screen width with a small gap at each edge.
+    if (track === 'viewport') {
+      const pad = 16;
+      return { left: pad, width: Math.max(0, document.documentElement.clientWidth - pad * 2 - el.offsetWidth) };
+    }
     const ref = typeof track === 'function' ? track() : track;
     if (!ref) return null;
     const r = ref.getBoundingClientRect();

@@ -1,0 +1,21 @@
+{
+  "_how": "How the homepage illustration reacts. poses: the picture for each mood; if a file is missing, the standing illustration is used instead, so nothing breaks. moments: what he says and which pose he uses as each part of the page comes into view. Edit the words freely. Leave say empty for no bubble.",
+  "poses": {
+    "still": "assets/satyam.png",
+    "wave": "assets/character/wave.png",
+    "working": "assets/character/working.png",
+    "glance": "assets/character/glance.png",
+    "reading": "assets/character/reading.png"
+  },
+  "moments": {
+    "hello": { "pose": "wave", "say": "Howdy!" },
+    "work": { "pose": "working", "say": "Here's what I've been working on." },
+    "hover": { "pose": "glance", "say": "Ooh, that one." },
+    "about": { "pose": "still", "say": "This is how I usually work." },
+    "life": { "pose": "still", "say": "Off the clock." },
+    "words": { "pose": "still", "say": "" },
+    "teaching": { "pose": "still", "say": "I love this part." },
+    "contact": { "pose": "wave", "say": "Say hi!" },
+    "poke": { "pose": "wave", "say": "Howdy!" }
+  }
+}

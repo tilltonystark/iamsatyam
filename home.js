@@ -1,5 +1,6 @@
 // Homepage: work list and testimonials from the content files, plus the character glancing at the work.
 import { esc, slot, healSlots } from './assets/frames.js';
+import { mountCharacter } from './assets/character.js';
 
 const isPreview = ['127.0.0.1', 'localhost', ''].includes(location.hostname);
 
@@ -22,7 +23,6 @@ json('content/projects.json').then(data => {
   }).join('');
   list.querySelectorAll('img').forEach(img => { img.loading = 'eager'; });
   healSlots(list);
-  watchGlance(list);
 }).catch(() => {});
 
 // Testimonials. Placeholder slots only show on the local preview.
@@ -35,22 +35,10 @@ json('content/testimonials.json').then(data => {
     </figure>`).join('');
 }).catch(() => {});
 
-// The illustration glances toward a case study while you hover or focus it.
-function watchGlance(list) {
-  const still = document.querySelector('.pose .still');
-  const glance = document.querySelector('.pose .glance');
-  if (!still || !glance) return;
-  let timer = 0;
-  const look = on => {
-    clearTimeout(timer);
-    // A short delay stops it flickering when the pointer just passes over.
-    timer = setTimeout(() => {
-      glance.classList.toggle('on', on);
-      still.classList.toggle('on', !on);
-    }, on ? 60 : 180);
-  };
-  list.addEventListener('pointerover', e => { if (e.target.closest('.case')) look(true); });
-  list.addEventListener('pointerout', e => { if (!e.relatedTarget?.closest?.('.case')) look(false); });
-  list.addEventListener('focusin', () => look(true));
-  list.addEventListener('focusout', e => { if (!list.contains(e.relatedTarget)) look(false); });
-}
+// The illustration reacts to the page (see assets/character.js and content/character.json).
+json('content/character.json').then(config => mountCharacter({
+  button: document.querySelector('.figure .pose'),
+  sections: [...document.querySelectorAll('[data-moment], #home')],
+  hoverArea: document.querySelector('.work-list'),
+  config,
+})).catch(() => {});

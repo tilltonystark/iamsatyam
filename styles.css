@@ -4,10 +4,26 @@
 body { display: grid; grid-template-columns: 34% minmax(0, 1fr); height: 100dvh; overflow: hidden; }
 
 .figure { display: grid; justify-items: center; align-content: start; padding-top: min(96px, 13dvh); }
-.pose { position: relative; width: min(300px, 76%, 46dvh); aspect-ratio: 2 / 3; }
-.pose img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; opacity: 0; transition: opacity .25s var(--ease); }
-.pose img.on { opacity: 1; }
-.pose .glance { height: 98.5%; top: auto; }
+.pose { position: relative; display: block; width: min(300px, 76%, 46dvh); aspect-ratio: 2 / 3; padding: 0; border: 0; background: none; cursor: pointer; transform-origin: 50% 100%; transition: transform .45s var(--ease); }
+.pose .layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; opacity: 0; transition: opacity .3s var(--ease); }
+.pose .layer.on { opacity: 1; }
+.pose.lean { transform: rotate(2.5deg) translateX(6px); }
+.pose:focus-visible { outline-offset: 8px; border-radius: 12px; }
+
+/* Speech bubble */
+.bubble {
+  position: absolute; left: 58%; top: 1%; z-index: 2;
+  padding: 9px 14px; border-radius: 16px 16px 16px 4px;
+  background: var(--ink); color: #fff; font: 500 15px/1.3 var(--text); white-space: nowrap;
+  opacity: 0; transform: translateY(6px) scale(.9); transform-origin: 0 100%;
+  transition: opacity .2s var(--ease), transform .2s var(--ease);
+  pointer-events: none;
+}
+.bubble.show { opacity: 1; transform: none; transition: opacity .25s var(--ease), transform .45s cubic-bezier(.34, 1.56, .64, 1); }
+@media (prefers-reduced-motion: no-preference) {
+  .pose.wiggle { animation: wiggle .9s var(--ease); }
+}
+@keyframes wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-3deg); } 40% { transform: rotate(2.5deg); } 60% { transform: rotate(-2deg); } 80% { transform: rotate(1deg); } }
 
 main { overflow-y: auto; padding-inline: 8px clamp(24px, 4vw, 56px); scroll-padding-top: 76px; outline: none; }
 .topnav, .column { max-width: 780px; }
@@ -81,6 +97,7 @@ section > .heading, footer > .heading { margin-bottom: 28px; font-size: clamp(28
   body { display: block; height: auto; overflow: visible; }
   .figure { padding: 20px 0 0; }
   .pose { width: 96px; }
+  .bubble { font-size: 13px; padding: 7px 11px; left: 92%; top: 6%; }
   main { overflow: visible; padding-inline: var(--side); }
   .topnav { position: static; background: none; backdrop-filter: none; }
   .topnav .home { display: none; }

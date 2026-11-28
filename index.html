@@ -12,11 +12,12 @@
   <!-- Words for the work list and testimonials come from content/projects.json and content/testimonials.json. -->
   <body>
     <a class="skip" href="#home">Skip to content</a>
-    <aside class="figure" aria-hidden="true">
-      <div class="pose">
-        <img class="still on" src="assets/satyam.png" alt="" width="1024" height="1536">
-        <img class="glance" src="character-motion/assets/glance.webp" alt="" width="268" height="462">
-      </div>
+    <aside class="figure">
+      <button class="pose" type="button" aria-label="Illustration of Satyam. Press to say hi.">
+        <img class="layer on" src="assets/satyam.png" alt="" width="1024" height="1536">
+        <img class="layer" alt="" width="1024" height="1536">
+        <span class="bubble" aria-hidden="true"></span>
+      </button>
     </aside>
     <main tabindex="-1">
       <header class="topnav">
@@ -42,7 +43,7 @@
           </dl>
         </section>
 
-        <section id="work" aria-labelledby="work-h">
+        <section id="work" aria-labelledby="work-h" data-moment="work">
           <p class="label">Selected work</p>
           <h2 id="work-h" class="heading">Three case studies, one decision each</h2>
           <div class="work-list">
@@ -57,7 +58,7 @@
           </a>
         </section>
 
-        <section id="about" aria-labelledby="about-h">
+        <section id="about" aria-labelledby="about-h" data-moment="about">
           <p class="label">How I work</p>
           <h2 id="about-h" class="heading">My workflow as a solo designer</h2>
           <div class="workflows">
@@ -72,7 +73,7 @@
           </div>
         </section>
 
-        <section aria-labelledby="life-h">
+        <section aria-labelledby="life-h" data-moment="life">
           <p class="label">Away from the screen</p>
           <h2 id="life-h" class="heading">Other than design</h2>
           <div class="tiles">
@@ -82,7 +83,7 @@
           </div>
         </section>
 
-        <section aria-labelledby="words-h">
+        <section aria-labelledby="words-h" data-moment="words">
           <p class="label">Kind words</p>
           <h2 id="words-h" class="heading">From people I’ve worked with</h2>
           <div class="quotes">
@@ -93,7 +94,7 @@
           </div>
         </section>
 
-        <section aria-labelledby="teach-h">
+        <section aria-labelledby="teach-h" data-moment="teaching">
           <p class="label">Teaching</p>
           <h2 id="teach-h" class="heading">I love sharing whatever I’ve learnt</h2>
           <ul class="teaching">
@@ -103,7 +104,7 @@
           </ul>
         </section>
 
-        <footer id="contact" aria-labelledby="contact-h">
+        <footer id="contact" aria-labelledby="contact-h" data-moment="contact">
           <p class="label">Contact</p>
           <h2 id="contact-h" class="heading">Want to talk about design, a role, or an idea?</h2>
           <a class="email display" href="mailto:satyam@vizually.design">satyam@vizually.design</a>

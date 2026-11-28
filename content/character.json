@@ -16,11 +16,12 @@
       "frames": [
         "assets/character/working-1.png",
         "assets/character/working-2.png",
-        "assets/character/working-3.png",
-        "assets/character/working-4.png"
+        "assets/character/working-1.png",
+        "assets/character/working-3.png"
       ],
-      "fps": 3,
-      "breathe": true
+      "fps": 2.5,
+      "breathe": true,
+      "_note": "working-4.png redraws the face and tilts the head, so it would twitch in a loop. It's kept in the folder but left out of the loop."
     },
     "reading": {
       "frames": [

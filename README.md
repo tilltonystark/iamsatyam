@@ -1,6 +1,6 @@
 # Satyam personal website
 
-[Working website copy and content direction](./PERSONAL_SITE_COPY.md) · [Portfolio context and open questions](./PORTFOLIO_CONTEXT.md) · [Character motion components](./character-motion/)
+[Working website copy and content direction](./PERSONAL_SITE_COPY.md) · [Portfolio context and open questions](./PORTFOLIO_CONTEXT.md) · [Character motion components](./character-motion/) · [Animation rules](./notes/animation.md) · [Character pose prompt](./notes/character-prompt.md)
 
 ## Preview on your Mac
 

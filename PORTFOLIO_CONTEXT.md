@@ -91,3 +91,32 @@ Open questions:
 - Jumbo revenue, first-week player totals and failure counts stay out until records confirm them.
 - Real testimonials for Jumbo, Pixelup/Greptile and Workers.
 - Real photos for the side quests and teaching rows.
+
+## Later updates (28 Nov 2026)
+
+Live at https://iamsatyam.com (also www and iamsatyam.tilltonystark.workers.dev). Hosting: Cloudflare Workers static assets. The domain is attached with worker routes (`iamsatyam.com/*`, `www.iamsatyam.com/*`) because old proxied DNS records still exist on the zone. Publish with `npx wrangler deploy` from this folder.
+
+Design system
+- Two typefaces only: Fraunces for headings, Inter for everything else (nav, labels, buttons, chips). The workflow SVGs use Inter-like system fonts.
+- Neutral greys only (no warm tints). Homepage case study thumbnails sit on #f4f4f4. Each case study page keeps its project tint.
+- Nav: Work · Playground · About, plus a light/dark toggle. Contact was removed from the nav; the contact section stays at the bottom of the homepage. Nav links are regular weight, semibold on hover, with no underline.
+- Light and dark themes (`assets/theme.js`, tokens in `assets/site.css`). The theme follows the system until the visitor picks one. In dark, the character keeps its true colours with a light "sticker" edge, the workflow diagrams flip to light ink, and project tints become a quiet wash. Text contrast in dark: ink 15.8:1, muted 7.9:1.
+- Page motion: text and images reveal from a soft blur; images load as a wireframe sketch and resolve into the screenshot (`assets/frames.js`, `assets/reveal.js`).
+- The playground (`playground.html`, `content/playground.json`) is a recent.design-style grid: four equal columns with 12 px gaps, each cell the plain image at full column width, filter chips, and a larger view on click.
+- The homepage scrolls as a whole page while the illustration stays fixed on the left. On phones the character becomes a small corner companion.
+- Favicon and touch icon come from the character's face (`assets/icons/`). Share images are 1200×630 for the homepage and each case study (`assets/og/`, generated from `notes/og.html`). Every page has a title, description and Open Graph tags.
+
+Character (homepage)
+- Poses and lines: `content/character.json`. Drawings: `assets/character/` (wave, wave-2, glance, reading, working-1 to working-4). Generation prompt: `notes/character-prompt.md`.
+- Behaviour: waves three times with "Howdy!" on arrival, then settles. He faces the visitor; while scrolling he turns to the page (glance). Each section gets one line once scrolling settles. The work section shows him typing at the laptop (frames 1 → 2 → 1 → 3, with breathing). Side quests show him reading. Hovering the projects makes him lean in once. A fast scroll gets "Whoa, in a hurry?". Clicking him says hi.
+- working-4.png is excluded from the loop because it redraws the face and head and twitches.
+- Animation rules from Satyam's feedback: `notes/animation.md`.
+
+Walker (case studies): goes from 16 px from the screen's left edge to 16 px from its right edge in step with the scroll, sits down as the case study ends, and is smaller on phones.
+
+Still open
+- Images for the seven empty case study slots (list above).
+- Real testimonials (placeholders show only on the local preview).
+- Timelines for each project.
+- Real photos for the side quests and teaching rows (currently greyscale editorial placeholders).
+- Optional: re-export the 1× screens (Zorro, Vertera, Greptile, Workers) at 2× for sharper Retina images.

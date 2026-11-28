@@ -39,7 +39,7 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
   // Changing stance (standing <-> sitting at the laptop) is a bigger change and gets a slower blend.
   const seated = new Set(['working']);
   let shownName = 'still', eyesTimer = 0;
-  const TIMING = { frame: [90, 0], small: [180, 2], big: [450, 6] }; // [ms, blur px]
+  const TIMING = { frame: [60, 0], small: [180, 2], big: [450, 6] }; // [ms, blur px]
 
   function show(src, kind, name) {
     const [ms, blur] = TIMING[kind];

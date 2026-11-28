@@ -75,10 +75,10 @@ function render(data) {
     <header class="wrap topnav">
       <a class="home" href="../index.html">Satyam.</a>
       <nav aria-label="Site">
-        <a class="label" href="../index.html#work">Work</a>
-        <a class="label" href="../playground.html">Playground</a>
-        <a class="label" href="../index.html#about">About</a>
-        <a class="label" href="../index.html#contact">Contact</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../playground.html">Playground</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
       </nav>
     </header>
     <main id="main" class="wrap">
@@ -100,8 +100,7 @@ function render(data) {
   if (matchMedia('(min-width: 861px)').matches) {
     mountWalker({
       base: '../character-motion/assets/',
-      track: () => root.querySelector('.facts .owned'),
-      after: () => root.querySelector('.facts'),
+      track: () => root.querySelector('main.wrap > .grid.hero'),
       end: () => document.getElementById('looking-back') || root.querySelector('.next'),
     });
   }

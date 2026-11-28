@@ -1,5 +1,6 @@
 // Playground grid from content/playground.json: filter chips, equal-width columns, larger view on click.
-import { esc, dims, slot, healSlots } from './assets/frames.js';
+import { esc, dims, healSlots } from './assets/frames.js';
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 const grid = document.querySelector('.masonry');
 const chips = document.querySelector('.chips');
@@ -8,26 +9,40 @@ let items = [];
 let active = 'All';
 let lastTrigger = null;
 
-const columnsFor = width => width >= 1200 ? 4 : width >= 880 ? 3 : width >= 540 ? 2 : 1;
+const columnsFor = width => width >= 960 ? 4 : width >= 640 ? 3 : 2;
+
+function media(item) {
+  const dir = item.folder ? `assets/work/${item.folder}/` : 'assets/work/';
+  const { w, h } = dims(item.size);
+  const src = esc(dir + item.file);
+  if (/\.(mp4|webm)$/i.test(item.file)) {
+    const poster = item.poster ? ` poster="${esc(dir + item.poster)}"` : '';
+    return `<video src="${src}"${poster} muted playsinline${reducedMotion.matches ? ' controls' : ' autoplay loop'} width="${w}" height="${h}" aria-label="${esc(item.alt || item.title)}"></video>`;
+  }
+  const ph = `<div class="ph" style="--ratio:${w}/${h}"><strong>${esc(item.size)}</strong><span>${esc(item.title)}</span></div>`;
+  // ratio (e.g. "4:5") fits the whole picture inside a box of that shape instead of using the picture's own shape.
+  const fit = item.ratio ? ` style="aspect-ratio:${esc(item.ratio.replace(/[×x:]/, '/'))};object-fit:contain;padding:12%"` : '';
+  return `<img src="${src}" alt="${esc(item.alt || item.title)}" width="${w}" height="${h}" loading="lazy" decoding="async"${fit} data-ph="${esc(ph)}">`;
+}
 
 function cell(item, index) {
-  const dir = item.folder ? `assets/work/${item.folder}/` : 'assets/work/';
-  const art = slot({ ...item, show: item.title }, dir);
-  const cap = `<span class="cap"><span><strong>${esc(item.title)}</strong></span><span class="label">${esc(item.client)}</span></span>`;
+  const tag = `<span class="tag">${esc(item.title)}<span>${esc(item.client)}</span></span>`;
   const go = `<span class="go" aria-hidden="true">${item.link ? '↗' : '+'}</span>`;
+  const bg = item.bg ? ` style="--cell-bg:${esc(item.bg)}"` : '';
   return item.link
-    ? `<a class="cell" href="${esc(item.link)}"><span class="art">${art}</span>${go}${cap}</a>`
-    : `<button class="cell" type="button" data-index="${index}" aria-label="View ${esc(item.title)} larger"><span class="art">${art}</span>${go}${cap}</button>`;
+    ? `<a class="cell" href="${esc(item.link)}"${bg}>${media(item)}${tag}${go}</a>`
+    : `<button class="cell" type="button" data-index="${index}"${bg} aria-label="View ${esc(item.title)} larger">${media(item)}${tag}${go}</button>`;
 }
 
 function layout() {
   const shown = items.map((item, i) => ({ item, i })).filter(({ item }) => active === 'All' || item.tags?.includes(active));
-  const count = Math.min(columnsFor(grid.clientWidth), Math.max(1, shown.length));
+  const count = columnsFor(grid.clientWidth);
   const cols = Array.from({ length: count }, () => ({ h: 0, html: [] }));
   for (const { item, i } of shown) {
     const { w, h } = dims(item.size);
-    // Rough height of a cell in column-width units: picture + padding + caption.
-    const est = (item.frame === 'bare' ? .44 * h / w : h / w) + .35;
+    // Height of a cell in column-width units.
+    const [rw, rh] = String(item.ratio || '').split(/[×x:/]/).map(Number);
+    const est = rw && rh ? rh / rw : h / w;
     const col = cols.reduce((a, b) => (b.h < a.h ? b : a));
     col.h += est;
     col.html.push(cell(item, i));

@@ -1,7 +1,8 @@
-// A small Satyam that walks along a track while the page scrolls, then sits down at the end.
+// A small Satyam that walks from the left edge of `track` to its right edge as you scroll through
+// the case study, arriving (and sitting down) exactly when the bottom of `end` reaches the bottom of the screen.
 // All poses are loaded once and stacked; switching pose only toggles a class, so nothing flickers.
 // Position eases toward its target every frame, and the walk cycle runs on a steady clock.
-export function mountWalker({ base, track, end, after, sitAt = .72 }) {
+export function mountWalker({ base, track, end }) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const el = document.createElement('div');
   el.className = 'walker';
@@ -36,20 +37,14 @@ export function mountWalker({ base, track, end, after, sitAt = .72 }) {
     const r = ref.getBoundingClientRect();
     return { left: r.left, width: Math.max(0, r.width - el.offsetWidth) };
   };
+  const endEl = () => (typeof end === 'function' ? end() : end);
+  // 0 at the top of the page, 1 when the end of the case study is fully on screen.
   const progress = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    return max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    const stop = endEl();
+    const finish = stop ? stop.getBoundingClientRect().bottom + scrollY - innerHeight : document.documentElement.scrollHeight - innerHeight;
+    return finish > 0 ? Math.min(1, Math.max(0, scrollY / finish)) : 1;
   };
-  const isSeated = () => {
-    const stop = typeof end === 'function' ? end() : end;
-    return !!stop && stop.getBoundingClientRect().top < innerHeight * sitAt;
-  };
-
-  // Stay hidden until the reader has scrolled past `after` (e.g. the hero), so it never sits on top of it.
-  function updateVisible() {
-    const gate = typeof after === 'function' ? after() : after;
-    el.classList.toggle('shown', !gate || gate.getBoundingClientRect().bottom < innerHeight - 140);
-  }
+  const isSeated = () => progress() >= .995;
 
   function measure(snap) {
     const b = bounds();
@@ -75,7 +70,6 @@ export function mountWalker({ base, track, end, after, sitAt = .72 }) {
       show('idle');
     }
     el.style.transform = `translate3d(${x.toFixed(1)}px,0,0)`;
-    updateVisible();
     el.classList.toggle('left', face < 0 && shown !== 'settled');
 
     raf = moving ? requestAnimationFrame(frame) : 0;
@@ -94,8 +88,9 @@ export function mountWalker({ base, track, end, after, sitAt = .72 }) {
   }
 
   if (reduced.matches) {
-    requestAnimationFrame(() => { measure(true); el.style.transform = `translate3d(${x}px,0,0)`; updateVisible(); });
-    addEventListener('scroll', updateVisible, { passive: true });
+    const place = () => { measure(true); el.style.transform = `translate3d(${x}px,0,0)`; show(isSeated() ? 'settled' : 'idle'); };
+    requestAnimationFrame(place);
+    addEventListener('scroll', place, { passive: true });
     return { destroy: () => el.remove() };
   }
 

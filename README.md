@@ -21,7 +21,7 @@ Then open <http://127.0.0.1:4186/>. Pages read their words from the `content` fo
 | Playground grid | `playground.html` | `content/playground.json` + `assets/work/<folder>/` |
 | Character demo | `character.html` | `character-motion/` |
 
-Shared look (fonts, colours, labels, phone and browser frames): `assets/site.css`.
+Shared look (fonts, colours, labels, phone and browser frames): `assets/site.css`. Two typefaces only: Fraunces for headings, Inter for everything else.
 
 ## HOW TO UPDATE
 
@@ -61,7 +61,7 @@ In `content/projects.json`, edit `"order": ["jumbo", "zorro", "vertera"]`. This 
 
 ### Add work to the playground
 
-Copy one block in `content/playground.json`, change the title, client, folder, file, size, frame and tags. New tags become filter buttons automatically. Add `"link"` to send the cell to another page; without it, clicking opens the image larger. The first item in the list shows first.
+Copy one block in `content/playground.json`, change the title, client, folder, file, size and tags. Cells show the plain image at full column width (no frame), so export screens the way you want them seen. For a transparent picture, add `"ratio": "4:5"` and `"bg": "#f5f4f0"` to place it on a coloured tile. New tags become filter buttons automatically. Add `"link"` to send the cell to another page; without it, clicking opens the image larger. The first item in the list shows first.
 
 ### Testimonials
 

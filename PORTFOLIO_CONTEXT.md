@@ -61,7 +61,7 @@ Changes:
 - Three case studies at `work/jumbo.html`, `work/zorro.html` and `work/vertera.html`. All three are built from `content/projects.json` with one template (`work/case.js`, `work/case.css`). Images live in `assets/work/<project>/`.
 - Greptile and Workers moved to the playground grid (`playground.html`, `content/playground.json`). The character demo moved from `playground.html` to `character.html` and is one cell in the grid.
 - Slides and Buildojo stay off the site.
-- One shared look for every page in `assets/site.css`: Fraunces for headings, Inter for text, JetBrains Mono for labels, plus the shared phone, browser, app and loose frames (`assets/frames.js`). The homepage pop-up case studies were removed in favour of links.
+- One shared look for every page in `assets/site.css`: Fraunces for headings and Inter for everything else (labels, navigation, buttons), plus the shared phone, browser, app and loose frames (`assets/frames.js`). The homepage pop-up case studies were removed in favour of links.
 - Painted editorial placeholders are shown in greyscale (`.ink`) so they sit with the ink character until real photos arrive.
 - Character: the homepage illustration glances at the work while a case study is hovered or focused. On case studies a small walker crosses the margin column while you scroll (eased position, steady walk cycle, standing when idle) and sits at "Looking back". Reduced motion shows a still pose.
 - Testimonials come from `content/testimonials.json`. Placeholder quotes only render on the local preview.

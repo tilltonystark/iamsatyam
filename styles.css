@@ -1,24 +1,24 @@
 /* Homepage layout. Type, colour and frames come from assets/site.css.
    Desktop: fixed illustration on the left, the right column scrolls. Phone: one column. */
 
-body { display: grid; grid-template-columns: 40% minmax(0, 1fr); height: 100dvh; overflow: hidden; }
+body { display: grid; grid-template-columns: 34% minmax(0, 1fr); height: 100dvh; overflow: hidden; }
 
-.figure { display: grid; justify-items: center; align-content: start; padding-top: min(120px, 16dvh); }
+.figure { display: grid; justify-items: center; align-content: start; padding-top: min(96px, 13dvh); }
 .pose { position: relative; width: min(300px, 76%, 46dvh); aspect-ratio: 2 / 3; }
 .pose img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center; opacity: 0; transition: opacity .25s var(--ease); }
 .pose img.on { opacity: 1; }
 .pose .glance { height: 98.5%; top: auto; }
 
-main { overflow-y: auto; padding-inline: 8px clamp(24px, 5vw, 72px); scroll-padding-top: 76px; outline: none; }
-.topnav, .column { max-width: 620px; }
+main { overflow-y: auto; padding-inline: 8px clamp(24px, 4vw, 56px); scroll-padding-top: 76px; outline: none; }
+.topnav, .column { max-width: 780px; }
 .topnav { position: sticky; top: 0; z-index: 3; background: rgb(255 255 255 / .92); backdrop-filter: blur(8px); }
 
-.column { display: grid; gap: clamp(88px, 10vw, 128px); padding-block: clamp(64px, 10dvh, 112px) 96px; }
+.column { display: grid; gap: clamp(64px, 7vw, 96px); padding-block: clamp(36px, 7dvh, 72px) 72px; }
 section > .label, footer > .label { margin-bottom: 12px; }
 section > .heading, footer > .heading { margin-bottom: 28px; font-size: clamp(28px, 2.6vw, 38px); }
 
 /* Intro */
-#home h1 { font-size: clamp(48px, 5.6vw, 76px); }
+#home h1 { font-size: clamp(44px, 4.6vw, 64px); }
 .intro { margin-top: 28px; color: var(--muted); max-width: 54ch; }
 .intro p + p { margin-top: 14px; }
 .intro strong { color: var(--ink); font-weight: 600; }
@@ -27,7 +27,7 @@ section > .heading, footer > .heading { margin-bottom: 28px; font-size: clamp(28
 .contact dd { font-size: 15px; }
 
 /* Work list */
-.work-list { display: grid; gap: 56px; }
+.work-list { display: grid; gap: 48px; }
 .case { display: block; text-decoration: none; }
 .case:hover { color: inherit; }
 .case .cover { display: flex; justify-content: center; align-items: flex-end; gap: 4%; padding: clamp(20px, 3.4vw, 40px) clamp(16px, 3vw, 36px) 0; transition: transform .35s var(--ease); }
@@ -45,7 +45,7 @@ section > .heading, footer > .heading { margin-bottom: 28px; font-size: clamp(28
   .case:hover .cover .slot:nth-child(3) { transition-delay: .06s; }
 }
 
-.playground-link { display: grid; gap: 8px; margin-top: 56px; padding: 24px 0; border-block: 1px solid var(--rule); text-decoration: none; }
+.playground-link { display: grid; gap: 8px; margin-top: 48px; padding: 24px 0; border-block: 1px solid var(--rule); text-decoration: none; }
 .playground-link:hover { color: inherit; }
 .pl-title { font: 400 22px/1.25 var(--display); letter-spacing: -.01em; }
 

@@ -1,9 +1,9 @@
 /* Shared look for every page: type, colour, labels, navigation, mockup frames.
+   Two typefaces only: Fraunces for headings, Inter for everything else.
    Page-specific layout lives in styles.css (home), work/case.css and playground.css. */
 @font-face { font-family: Inter; src: url("inter-variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: Fraunces; src: url("fonts/fraunces.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
 @font-face { font-family: Fraunces; src: url("fonts/fraunces-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
-@font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono.woff2") format("woff2"); font-weight: 400 600; font-display: swap; }
 
 :root {
   --ink: #1f1f1d;
@@ -14,10 +14,9 @@
   --tint: var(--surface);
   --radius: 8px;
   --gutter: 24px;
-  --side: clamp(20px, 4vw, 56px);
+  --side: clamp(16px, 3vw, 40px);
   --display: Fraunces, Georgia, serif;
   --text: Inter, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --ease: cubic-bezier(.2, .7, .2, 1);
   --shadow-soft: 0 24px 60px -32px rgb(0 0 0 / .35), 0 1px 3px rgb(0 0 0 / .08);
 }
@@ -38,22 +37,22 @@ a:hover { color: var(--link); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* Type roles */
-.label { font: 500 12px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.label { font: 500 12px/1.4 var(--text); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .display { font-family: var(--display); font-weight: 400; font-variation-settings: "SOFT" 50, "WONK" 1; letter-spacing: -.03em; line-height: 1; }
-.heading { font: 400 clamp(28px, 3.2vw, 44px)/1.08 var(--display); font-variation-settings: "SOFT" 30, "WONK" 0; letter-spacing: -.025em; text-wrap: balance; }
+.heading { font: 400 clamp(26px, 2.6vw, 38px)/1.1 var(--display); font-variation-settings: "SOFT" 30, "WONK" 0; letter-spacing: -.025em; text-wrap: balance; }
 .muted { color: var(--muted); }
 
 /* Top navigation, same on every page */
-.topnav { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; }
+.topnav { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 60px; }
 .topnav a { text-decoration: none; }
 .topnav .home { font: 500 22px/1 var(--display); letter-spacing: -.02em; }
 .topnav nav { display: flex; gap: clamp(14px, 2vw, 24px); }
-.topnav nav a { padding-block: 8px; }
+.topnav nav a { padding-block: 8px; font: 500 15px/1.2 var(--text); color: var(--muted); }
 .topnav nav a[aria-current="page"] { color: var(--ink); }
 .topnav nav a:hover { color: var(--ink); text-decoration: underline; }
 
 /* Arrow link */
-.more { display: inline-flex; align-items: center; gap: 8px; font: 500 12px/1.4 var(--mono); letter-spacing: .04em; text-transform: uppercase; text-decoration: none; }
+.more { display: inline-flex; align-items: center; gap: 6px; font: 500 15px/1.4 var(--text); letter-spacing: -.005em; text-decoration: none; }
 .more::after { content: "→"; transition: transform .2s var(--ease); }
 .more:hover::after, a:hover .more::after { transform: translateX(4px); }
 
@@ -83,7 +82,7 @@ a:hover { color: var(--link); }
   display: grid; place-content: center; gap: 8px; padding: 16px; text-align: center;
   aspect-ratio: var(--ratio, 16 / 10);
   background: repeating-linear-gradient(-45deg, #f7f7f5 0 10px, #f0efeb 10px 20px);
-  color: #6b6b66; font: 500 11px/1.5 var(--mono); letter-spacing: .02em;
+  color: #6b6b66; font: 500 12px/1.5 var(--text);
 }
 .ph strong { color: var(--ink); font-weight: 600; }
 .slot.phone .ph { background: repeating-linear-gradient(-45deg, #2a2a2a 0 10px, #242424 10px 20px); color: #bdbdb8; }

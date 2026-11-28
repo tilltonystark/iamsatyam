@@ -1,6 +1,9 @@
 // Homepage: work list and testimonials from the content files, plus the character glancing at the work.
 import { esc, slot, healSlots } from './assets/frames.js';
 import { mountCharacter } from './assets/character.js';
+import { reveal } from './assets/reveal.js';
+
+reveal(document.querySelectorAll('#home h1, .intro p, .contact > div, section > .label, section > .heading, footer > .label, footer > .heading, .email, .playground-link, .workflows figure, .tiles figure, .teaching li'));
 
 const isPreview = ['127.0.0.1', 'localhost', ''].includes(location.hostname);
 
@@ -23,6 +26,7 @@ json('content/projects.json').then(data => {
   }).join('');
   list.querySelectorAll('img').forEach(img => { img.loading = 'eager'; });
   healSlots(list);
+  reveal(list.querySelectorAll('.case'));
 }).catch(() => {});
 
 // Testimonials. Placeholder slots only show on the local preview.
@@ -33,6 +37,7 @@ json('content/testimonials.json').then(data => {
       <blockquote>${q.placeholder ? '' : '“'}${esc(q.text)}${q.placeholder ? '' : '”'}</blockquote>
       <figcaption class="label">${q.placeholder ? 'Placeholder · ' : ''}${esc(q.by)}</figcaption>
     </figure>`).join('');
+  reveal(document.querySelectorAll('.quote'));
 }).catch(() => {});
 
 // The illustration reacts to the page (see assets/character.js and content/character.json).

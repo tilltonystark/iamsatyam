@@ -1,5 +1,6 @@
 // Playground grid from content/playground.json: filter chips, equal-width columns, larger view on click.
-import { esc, dims, healSlots } from './assets/frames.js';
+import { esc, dims, healSlots, wireframe } from './assets/frames.js';
+import { reveal } from './assets/reveal.js';
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 const grid = document.querySelector('.masonry');
@@ -17,12 +18,12 @@ function media(item) {
   const src = esc(dir + item.file);
   if (/\.(mp4|webm)$/i.test(item.file)) {
     const poster = item.poster ? ` poster="${esc(dir + item.poster)}"` : '';
-    return `<video src="${src}"${poster} muted playsinline${reducedMotion.matches ? ' controls' : ' autoplay loop'} width="${w}" height="${h}" aria-label="${esc(item.alt || item.title)}"></video>`;
+    return `<div class="media">${wireframe(w, h)}<video src="${src}"${poster} muted playsinline${reducedMotion.matches ? ' controls' : ' autoplay loop'} width="${w}" height="${h}" aria-label="${esc(item.alt || item.title)}" data-ph=""></video></div>`;
   }
   const ph = `<div class="ph" style="--ratio:${w}/${h}"><strong>${esc(item.size)}</strong><span>${esc(item.title)}</span></div>`;
   // ratio (e.g. "4:5") fits the whole picture inside a box of that shape instead of using the picture's own shape.
   const fit = item.ratio ? ` style="aspect-ratio:${esc(item.ratio.replace(/[×x:]/, '/'))};object-fit:contain;padding:12%"` : '';
-  return `<img src="${src}" alt="${esc(item.alt || item.title)}" width="${w}" height="${h}" loading="lazy" decoding="async"${fit} data-ph="${esc(ph)}">`;
+  return `<div class="media">${item.ratio ? '' : wireframe(w, h)}<img src="${src}" alt="${esc(item.alt || item.title)}" width="${w}" height="${h}" loading="lazy" decoding="async"${fit} data-ph="${esc(ph)}"></div>`;
 }
 
 function cell(item, index) {
@@ -49,6 +50,7 @@ function layout() {
   }
   grid.innerHTML = cols.map(c => `<div class="col">${c.html.join('')}</div>`).join('');
   healSlots(grid);
+  reveal(grid.querySelectorAll('.cell'), { stagger: .05 });
 }
 
 function renderChips() {

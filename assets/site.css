@@ -62,11 +62,33 @@ a:hover { color: var(--link); }
 /* ---------- Mockup frames ---------- */
 .slot { position: relative; margin: 0; min-width: 0; }
 .frame { position: relative; overflow: hidden; background: #fff; }
-.frame > img, .frame > video, .frame > .ph { width: 100%; }
-.slot.crop .frame > img, .slot.crop .frame > video { aspect-ratio: var(--ratio); object-fit: cover; object-position: top; }
+.frame img, .frame video, .frame .ph { width: 100%; }
+.slot.crop .frame img, .slot.crop .frame video { aspect-ratio: var(--ratio); object-fit: cover; object-position: top; }
+
+/* Loading: a wireframe sketch first, then the real image resolves over it from a soft blur. */
+.media { position: relative; overflow: hidden; background: #f7f6f2; }
+.wire { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .5s var(--ease) .25s; }
+.wire .b { fill: #ecebe5; }
+.wire .d { fill: #dcdbd4; }
+.wire .l { fill: #e4e3dc; }
+.media img, .media video { position: relative; opacity: 0; filter: blur(14px); transform: scale(1.015); transition: opacity .7s var(--ease), filter .8s var(--ease), transform .8s var(--ease); }
+.media.loaded img, .media.loaded video { opacity: 1; filter: none; transform: none; }
+.media.loaded .wire { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .media:not(.loaded) .wire { animation: wire-pulse 1.6s ease-in-out infinite; }
+}
+@keyframes wire-pulse { 50% { opacity: .55; } }
+
+/* Scroll reveal: text and images arrive from a soft blur as each part of the page comes into view. */
+.reveal { opacity: 0; filter: blur(10px); transform: translateY(14px); transition: opacity .7s var(--ease), filter .7s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0s); }
+.reveal.in { opacity: 1; filter: none; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; filter: none; transform: none; }
+  .media img, .media video { opacity: 1; filter: none; transform: none; }
+}
 
 .slot.phone .frame { border-radius: 13.5% / 6.2%; border: clamp(4px, .55vw, 7px) solid #151515; background: #151515; box-shadow: 0 30px 60px -30px rgb(0 0 0 / .45), 0 2px 6px rgb(0 0 0 / .12); }
-.slot.phone .frame > img, .slot.phone .frame > video, .slot.phone .frame > .ph { border-radius: 11% / 5%; }
+.slot.phone .media, .slot.phone .frame > .ph { border-radius: 11% / 5%; }
 
 .slot.browser .frame, .slot.app .frame { border-radius: 10px; border: 1px solid rgb(0 0 0 / .08); box-shadow: var(--shadow-soft); }
 .slot.browser .bar, .slot.app .bar { display: flex; align-items: center; gap: 6px; height: 30px; padding-inline: 12px; background: #f3f3f1; border-bottom: 1px solid rgb(0 0 0 / .06); }

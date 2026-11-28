@@ -1,11 +1,11 @@
 {
-  "_how": "How the homepage illustration reacts. poses: the picture for each mood; if a file is missing, the standing illustration is used instead, so nothing breaks. moments: what he says and which pose he uses as each part of the page comes into view. Edit the words freely. Leave say empty for no bubble.",
+  "_how": "How the homepage illustration reacts. poses: the picture (or short loop of pictures) for each mood. A loop uses frames, fps (pictures per second) and breathe (a gentle body motion). Missing files are skipped, and a pose with no files uses the standing illustration, so nothing breaks. moments: what he says and which pose he uses as each part of the page comes into view. Edit the words freely; leave say empty for no bubble. See notes/character-prompt.md for how to make the pictures.",
   "poses": {
     "still": "assets/satyam.png",
-    "wave": "assets/character/wave.png",
-    "working": "assets/character/working.png",
+    "wave": { "frames": ["assets/character/wave.png", "assets/character/wave-2.png"], "fps": 4 },
     "glance": "assets/character/glance.png",
-    "reading": "assets/character/reading.png"
+    "working": { "frames": ["assets/character/working-1.png", "assets/character/working-2.png", "assets/character/working-3.png", "assets/character/working-4.png"], "fps": 3, "breathe": true },
+    "reading": { "frames": ["assets/character/reading.png"], "breathe": true }
   },
   "moments": {
     "hello": { "pose": "wave", "say": "Howdy!" },

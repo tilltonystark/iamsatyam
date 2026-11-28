@@ -2,6 +2,7 @@
 // The page only says which project it is: <body data-project="jumbo">.
 import { esc, slot, healSlots } from '../assets/frames.js';
 import { mountWalker } from '../assets/walker.js';
+import { reveal } from '../assets/reveal.js';
 
 const slug = document.body.dataset.project;
 const root = document.getElementById('case');
@@ -96,6 +97,7 @@ function render(data) {
     </main>`;
 
   healSlots(root);
+  reveal(root.querySelectorAll('.hero > *, .hero-shots, .facts, .chapter-head > *, .para > *, .option, .detail .shot, .detail .words, .ledger, .strip, .why, .quote, .next'));
 
   if (matchMedia('(min-width: 861px)').matches) {
     mountWalker({

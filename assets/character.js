@@ -26,7 +26,7 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
   await Promise.all(Object.entries(poses).map(async ([name, def]) => {
     const d = typeof def === 'string' ? { frames: [def] } : def;
     const frames = (await Promise.all((d.frames || []).map(exists))).filter(Boolean);
-    if (frames.length) ready[name] = { frames, fps: d.fps || 3, breathe: !!d.breathe };
+    if (frames.length) ready[name] = { frames, fps: d.fps || 3, breathe: !!d.breathe, loops: d.loops || 0, then: d.then || null };
   }));
   const still = ready.still || { frames: [layers[0].getAttribute('src')], fps: 1, breathe: false };
   const stillSrc = still.frames[0];
@@ -39,7 +39,7 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
   // Changing stance (standing <-> sitting at the laptop) is a bigger change and gets a slower blend.
   const seated = new Set(['working']);
   let shownName = 'still', eyesTimer = 0;
-  const TIMING = { frame: [120, 0], small: [180, 2], big: [450, 6] }; // [ms, blur px]
+  const TIMING = { frame: [90, 0], small: [180, 2], big: [450, 6] }; // [ms, blur px]
 
   function show(src, kind, name) {
     const [ms, blur] = TIMING[kind];
@@ -54,7 +54,14 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     const next = layers[1 - front], prev = layers[front];
     next.src = src;
     const swap = () => {
-      next.classList.add('on'); prev.classList.remove('on'); front = 1 - front;
+      // The incoming drawing fades in on top while the outgoing one stays fully visible underneath,
+      // so the figure never dims mid-change (that dip is what read as blinking).
+      clearTimeout(next._off);
+      next.style.zIndex = 2; prev.style.zIndex = 1;
+      next.classList.add('on');
+      front = 1 - front;
+      clearTimeout(prev._off);
+      prev._off = setTimeout(() => prev.classList.remove('on'), ms + 30);
       if (src === stillSrc) eyesTimer = setTimeout(() => button.classList.add('still-on'), ms);
     };
     next.decode ? next.decode().then(swap, swap) : swap();
@@ -73,10 +80,26 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     show(pose.frames[0], kind, name);
     button.classList.toggle('breathe', pose.breathe && !reduced.matches);
     if (pose.frames.length > 1 && !reduced.matches) {
+      // loops: how many times to play the frames (0 = keep going). then: the pose to settle into after.
+      let steps = pose.loops ? pose.loops * pose.frames.length : Infinity;
       frameTimer = setInterval(() => {
+        if (--steps <= 0) {
+          clearInterval(frameTimer);
+          show(pose.frames[0], 'frame', name);
+          if (pose.then) {
+            if (basePose === name) basePose = pose.then; // once the gesture is done, it stays done
+            if (current === pose && !looking) setTimeout(() => { if (current === pose) setPose(pose.then); }, 250);
+          }
+          return;
+        }
         frameIndex = (frameIndex + 1) % pose.frames.length;
         show(pose.frames[frameIndex], 'frame', name);
       }, 1000 / pose.fps);
+    } else if (pose.then && !reduced.matches) {
+      setTimeout(() => {
+        if (basePose === name) basePose = pose.then;
+        if (current === pose && !looking) setPose(pose.then);
+      }, 1800);
     }
   }
 

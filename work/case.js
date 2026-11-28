@@ -79,7 +79,6 @@ function render(data) {
         <a href="../index.html#work" data-text="Work">Work</a>
         <a href="../playground.html" data-text="Playground">Playground</a>
         <a href="../index.html#about" data-text="About">About</a>
-        <a href="../index.html#contact" data-text="Contact">Contact</a>
       </nav>
     </header>
     <main id="main" class="wrap">
@@ -97,6 +96,7 @@ function render(data) {
     </main>`;
 
   healSlots(root);
+  window.addThemeToggle?.(root.querySelector('.topnav nav'));
   reveal(root.querySelectorAll('.hero > *, .hero-shots, .facts, .chapter-head > *, .para > *, .option, .detail .shot, .detail .words, .ledger, .strip, .why, .quote, .next'));
 
   {

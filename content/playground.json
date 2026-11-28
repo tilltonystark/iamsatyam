@@ -1,5 +1,5 @@
 {
-  "_how": "Each item is one cell in the playground grid, shown as the plain image at full column width. Put the image in assets/work/<folder>/ and list it here. size is the image's width×height in pixels. tags become the filter buttons. link is optional; without it, clicking opens the image larger. ratio (like \"4:5\") fits a transparent picture inside a box of that shape; bg sets that box's colour. Newest first.",
+  "_how": "Each item is one cell in the playground grid, shown as the plain image at full column width. Put the image in assets/work/<folder>/ and list it here. size is the image's width×height in pixels. tags become the filter buttons. link is optional; without it, clicking opens the image larger. ratio (like \"4:5\") fits a transparent picture inside a box of that shape; bg sets that box's colour. art: true flips a black-ink drawing to light ink in dark mode. Newest first.",
   "items": [
     {
       "title": "Code review analytics",
@@ -53,7 +53,7 @@
       "alt": "Illustrated Satyam waving",
       "note": "Move your pointer and he follows it with his eyes.",
       "ratio": "4:5",
-      "bg": "#f4f4f4"
+      "art": true
     },
     {
       "title": "Following the investigation",

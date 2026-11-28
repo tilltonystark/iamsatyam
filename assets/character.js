@@ -32,7 +32,7 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
   const stillSrc = still.frames[0];
 
   let front = 0, shownSrc = layers[0].getAttribute('src'), current = null, frameTimer = 0, frameIndex = 0;
-  let section = null, spokenFor = null, hideTimer = 0;
+  let section = null, spokenFor = null, hideTimer = 0, basePose = 'still', looking = false;
 
   // ---------- Drawing ----------
   function show(src, soft) {
@@ -85,40 +85,53 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
 
   function play(name, { speak = true } = {}) {
     const m = moments[name];
-    if (!m) { setPose('still'); return; }
-    setPose(m.pose || 'still');
-    if (speak) say(m.say);
+    basePose = m?.pose || 'still';
+    if (!looking) setPose(basePose);
+    if (speak && m) say(m.say);
   }
 
   // ---------- Arrival ----------
   setTimeout(() => play('hello'), reduced.matches ? 0 : 600);
 
   // ---------- Scrolling: eyes follow the page, fast scrolling gets one remark ----------
-  let lastY = scrollY, lastT = performance.now(), fastSince = 0, settleTimer = 0, lookTimer = 0, hurriedAt = -1e9;
-  const isFast = () => fastSince && performance.now() - fastSince > 120;
+  // "Fast" = more than about two-thirds of a screen' worth of scrolling within a third of a second,
+  // which a quick trackpad flick or a few hard wheel spins easily reaches.
+  let fastSince = 0, settleTimer = 0, lookTimer = 0, hurriedAt = -1e9;
+  const trail = [];
+  let restingY = scrollY; // where the page was before this burst of scrolling
+  let jumpAt = -1e9;       // in-page link jumps (nav) glide fast on purpose; they don't count
+  document.addEventListener('click', e => { if (e.target.closest('a[href*="#"]')) jumpAt = performance.now(); });
 
   addEventListener('scroll', () => {
     const now = performance.now();
-    const speed = Math.abs(scrollY - lastY) / Math.max(1, now - lastT); // px per ms
-    lastY = scrollY; lastT = now;
+    if (!trail.length) trail.push([now - 1, restingY]);
+    trail.push([now, scrollY]);
+    while (trail.length && now - trail[0][0] > 330) trail.shift();
+    const travelled = Math.abs(scrollY - trail[0][1]);
+    const fast = travelled > Math.max(520, innerHeight * .65) && now - jumpAt > 1500;
 
+    // While scrolling he turns to look at the page (glance pose, or just his eyes), then faces you again.
     if (!reduced.matches) {
       button.classList.add('look');
+      if (ready.glance && !looking) { looking = true; setPose('glance'); }
       clearTimeout(lookTimer);
-      lookTimer = setTimeout(() => button.classList.remove('look'), 650);
+      lookTimer = setTimeout(() => {
+        button.classList.remove('look');
+        if (looking) { looking = false; setPose(basePose); }
+      }, 700);
     }
 
-    if (speed > 4) {
+    if (fast) {
       fastSince ||= now;
-      if (isFast() && now - hurriedAt > 10000 && lines.hurry) {
+      if (now - hurriedAt > 8000 && lines.hurry) {
         hurriedAt = now;
-        say(lines.hurry, 2200);
+        say(lines.hurry, 2400);
       }
-    } else if (speed < 1.2) fastSince = 0;
+    }
 
     // Section lines wait until scrolling settles, so a quick scroll isn't a stream of chatter.
     clearTimeout(settleTimer);
-    settleTimer = setTimeout(() => { fastSince = 0; react(); }, 260);
+    settleTimer = setTimeout(() => { fastSince = 0; trail.length = 0; restingY = scrollY; react(); }, 260);
   }, { passive: true });
 
   // ---------- Sections ----------
@@ -133,7 +146,7 @@ export async function mountCharacter({ button, sections, hoverArea, config }) {
     spokenFor = section;
     // Let a just-said "in a hurry?" finish before the next line.
     if (section) play(section, { speak: performance.now() - hurriedAt > 2200 });
-    else { setPose('still'); say(''); }
+    else { basePose = 'still'; if (!looking) setPose('still'); say(''); }
   }
 
   // ---------- Pointing at the projects: lean in once, then straighten up ----------

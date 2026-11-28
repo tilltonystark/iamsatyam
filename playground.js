@@ -23,7 +23,7 @@ function media(item) {
   const ph = `<div class="ph" style="--ratio:${w}/${h}"><strong>${esc(item.size)}</strong><span>${esc(item.title)}</span></div>`;
   // ratio (e.g. "4:5") fits the whole picture inside a box of that shape instead of using the picture's own shape.
   const fit = item.ratio ? ` style="aspect-ratio:${esc(item.ratio.replace(/[×x:]/, '/'))};object-fit:contain;padding:12%"` : '';
-  return `<div class="media">${item.ratio ? '' : wireframe(w, h)}<img src="${src}" alt="${esc(item.alt || item.title)}" width="${w}" height="${h}" loading="lazy" decoding="async"${fit} data-ph="${esc(ph)}"></div>`;
+  return `<div class="media">${item.ratio ? '' : wireframe(w, h)}<img${item.art ? ' class="art"' : ''} src="${src}" alt="${esc(item.alt || item.title)}" width="${w}" height="${h}" loading="lazy" decoding="async"${fit} data-ph="${esc(ph)}"></div>`;
 }
 
 function cell(item, index) {

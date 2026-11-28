@@ -67,6 +67,10 @@ Copy one block in `content/playground.json`, change the title, client, folder, f
 
 `content/character.json` sets what he says and which pose he uses on arrival, in each section, when a project is hovered, and when he's clicked. Poses are pictures in `assets/character/` (`wave.png`, `working.png`, `glance.png`, `reading.png`). Until a pose file exists he uses the standing illustration, so nothing looks broken. For a clean swap, draw each pose on the same 1024×1536 canvas as `assets/satyam.png`, feet in the same spot, transparent or white background.
 
+### Light and dark theme
+
+The site follows the visitor's system setting, and the sun/moon button in the nav switches it (the choice is remembered). Colours for both themes are the tokens at the top of `assets/site.css`. Black-ink drawings (the character, workflow diagrams) flip to light ink in dark mode automatically; screenshots stay as they are. In the playground, add `"art": true` to a drawing so it flips too.
+
 ### Testimonials
 
 Edit `content/testimonials.json`. To publish a real quote, fill in `"text"` and `"by"`, and set `"placeholder": false`. Placeholders only appear on your local preview, never on the live site.

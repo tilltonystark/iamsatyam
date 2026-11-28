@@ -5,8 +5,8 @@
   "compatibility_date": "2026-11-01",
   "workers_dev": true,
   "routes": [
-    { "pattern": "iamsatyam.com", "custom_domain": true },
-    { "pattern": "www.iamsatyam.com", "custom_domain": true }
+    { "pattern": "iamsatyam.com/*", "zone_name": "iamsatyam.com" },
+    { "pattern": "www.iamsatyam.com/*", "zone_name": "iamsatyam.com" }
   ],
   "assets": {
     "directory": ".",
